@@ -1,0 +1,90 @@
+.CatBlock .catItems .CatBlockShopItems label.labelItem .labelItemBlock .itemPrice, .CatBlock .catItems .CatBlockShopItems label.labelItem .labelItemBlock, .CatBlock .catItems .CatBlockShopItems, .CatBlock .catItems {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.CatBlock .ShopName .catalog_title {
+  text-align: center;
+}
+
+.CatBlock .catItems .CatBlockShopItems label.labelItem .labelItemBlock .itemPrice, .CatBlock .catItems .CatBlockShopItems label.labelItem .labelItemBlock, .CatBlock .catItems .CatBlockShopItems, .CatBlock .catItems {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.CatBlock .catItems {
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+.CatBlock .catItems .CatBlockShopItems {
+  width: 100%;
+}
+.CatBlock .catItems .CatBlockShopItems label.labelItem .labelItemBlock {
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+.CatBlock .catItems .CatBlockShopItems label.labelItem .labelItemBlock > * {
+  padding: 0.3em;
+}
+.CatBlock .catItems .CatBlockShopItems label.labelItem .labelItemBlock .itemInfo h2 {
+  margin: 0.5em 0;
+}
+.CatBlock .catItems .CatBlockShopItems label.labelItem .labelItemBlock > img {
+  height: 100px;
+  width: 100px;
+}
+.CatBlock .catItems .CatBlockShopItems label.labelItem .labelItemBlock .itemPrice {
+  margin: 0.5em 0;
+  -webkit-box-align: baseline;
+  -moz-box-align: baseline;
+  -ms-flex-align: baseline;
+  -webkit-align-items: baseline;
+  align-items: baseline;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+.CatBlock .catItems .CatBlockShopItems label.labelItem .labelItemBlock .itemPrice span {
+  font-weight: bold;
+  font-size: 120%;
+  margin: 0 0.5em 0 0;
+}
+.CatBlock .catItems .CatBlockShopItems label.labelItem .labelItemBlock .itemStock {
+  font-style: italic;
+}
+.CatBlock .catItems .CatBlockShopItems label.labelItem input[type=radio]:checked {
+  background: aqua;
+}
+.CatBlock .catItems .CatBlockShopItems input[type=button] {
+  margin: 0 1em;
+  background: #333;
+  border: none;
+  color: #fff;
+  padding: 0.5em 1em;
+  cursor: pointer;
+}
+.CatBlock .catItems .CatBlockShopItems.colored {
+  background: red;
+}
+
+#container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/*# sourceMappingURL=catblock.css.map */

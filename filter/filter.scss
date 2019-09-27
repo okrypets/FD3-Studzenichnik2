@@ -1,0 +1,21 @@
+@import "sass/flexbox";
+
+#container {
+    max-width: 1200px;
+    margin: 0 auto;
+    .FilterBlock {
+        h1 {
+            text-align: center;
+        }
+        label {
+            &.filter_list {
+                margin: 1em 0;
+                display: block;
+                select {
+                    min-width: 300px;
+                    min-height: 200px;
+                }
+            }
+        }
+    }
+}

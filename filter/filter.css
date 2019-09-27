@@ -1,0 +1,17 @@
+#container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+#container .FilterBlock h1 {
+  text-align: center;
+}
+#container .FilterBlock label.filter_list {
+  margin: 1em 0;
+  display: block;
+}
+#container .FilterBlock label.filter_list select {
+  min-width: 300px;
+  min-height: 200px;
+}
+
+/*# sourceMappingURL=filter.css.map */

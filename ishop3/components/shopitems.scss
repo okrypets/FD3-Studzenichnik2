@@ -1,0 +1,72 @@
+@import "./sass/_flexbox.scss";
+.CatBlock {
+    >.catItems {
+        @extend %flexbox;
+        @include flex(1);
+        @include flex-wrap(wrap);
+        >.CatBlockShopItems {
+            width: 100%;
+            @extend %flexbox;
+            >.Item {
+                width: 100%;
+                @include justify-content(space-between);
+                @extend %flexbox;
+                @include align-items(center);
+                    >* {
+                        padding: 0.3em;
+                    }
+                    >.itemInfo {
+                        @include flex(2);
+                        >h2 {
+                            margin: 0.5em 0;
+                        }
+                    }
+                    >img {
+                        @include flex(0);
+                        height: 100px;
+                        width: 100px;
+                    }
+                    >.priceBlock {
+                        text-align: right;
+                        >.itemPrice {
+                            margin: 0.5em 0;
+                            @extend %flexbox;
+                            @include justify-content(flex-end);
+                            >span {
+                                font-weight: bold;
+                                font-size: 120%;
+                                margin: 0 0.5em 0 0;
+                            }
+                        }
+                        >.itemStock {
+                            font-style: italic;
+                        }
+                    }
+                    >.buttonBlock {
+                        @include flex(0);
+                        >input {
+                            &[type="button"] {
+                                margin: 0 1em;
+                                background: #333;
+                                border: none;
+                                color: #fff;
+                                padding: 0.5em 1em;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                >input {
+                    &[type="radio"] {
+                        &:checked {
+                            background: aqua;
+                        }
+                    }
+                }
+            }
+
+            &.colored {
+                background: red;
+            }
+        }
+    }
+}

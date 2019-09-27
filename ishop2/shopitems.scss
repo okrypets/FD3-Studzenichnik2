@@ -1,0 +1,66 @@
+@import "sass/flexbox";
+.CatBlock {
+    .catItems {
+        @extend %flexbox;
+        @include flex(1);
+        @include flex-wrap(wrap);
+        .CatBlockShopItems {
+            width: 100%;
+            @extend %flexbox;
+            label.labelItem {
+                .labelItemBlock {
+                    @extend %flexbox;
+                    @include align-items(center);
+                    >* {
+                        padding: 0.3em;
+                    }
+                    .itemInfo {
+                        h2 {
+                            margin: 0.5em 0;
+                        }
+                    }
+                    &>img {
+                        height: 100px;
+                        width: 100px;
+                    }
+                    .itemPrice {
+                        margin: 0.5em 0;
+                        @extend %flexbox;
+                        @include align-items(baseline);
+                        @include justify-content(center);
+                        span {
+                            font-weight: bold;
+                            font-size: 120%;
+                            margin: 0 0.5em 0 0;
+                        }
+                    }
+                    .itemStock {
+                        font-style: italic;
+                    }
+                }
+                input {
+                    &[type="radio"] {
+                        &:checked {
+                            background: aqua;
+                        }
+                    }
+                }
+            }
+
+            input {
+                &[type="button"] {
+                    margin: 0 1em;
+                    background: #333;
+                    border: none;
+                    color: #fff;
+                    padding: 0.5em 1em;
+                    cursor: pointer;
+                }
+            }
+
+            &.colored {
+                background: red;
+            }
+        }
+    }
+}

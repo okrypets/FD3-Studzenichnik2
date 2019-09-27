@@ -1,0 +1,42 @@
+<!DOCTYPE html> 
+<html lang="ru">
+<head> 
+  <meta charset="utf-8" />
+  <title>Фильтр</title>
+</head> 
+<body> 
+  <div id="container"></div> 
+      
+  <script src="https://unpkg.com/react@15/dist/react.js"></script> 
+  <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script> 
+      
+  <script src="filter.js"></script>
+  <link rel="stylesheet" type="text/css" href="filter.css" />
+
+  <script>
+
+    let filterTitle = React.createElement('h1',{},'Фильтр');
+    let itemArr=[
+      {item:'fghsfghsghsfghs',code:1},
+      {item:'drteteryrtyryr',code:2},
+      {item:'dfjhgdghjfghjfghjd',code:3},
+      {item:'esfghjfghjfghjytf',code:4},
+      {item:'vbnmvbnmfjhdfedfg',code:5},
+      {item:'dfghdfghyfgdfbnmb',code:6},
+      {item:'dghjghryurhfhjgfj',code:7},
+      {item:'fhjeturjkgjkncgthbf',code:8},
+      {item:'ilyuidgfhluklkliol',code:9},
+      {item:'uithjkghjkghjkhghj',code:10},
+    ];
+
+    let resetvaluebutton = 'Сброс';
+
+    ReactDOM.render(
+      React.createElement(FilterBlock,{filterName:filterTitle, items:itemArr, defitems:itemArr, buttonvalue: resetvaluebutton}),
+      document.getElementById('container') 
+    );
+
+  </script>
+
+</body> 
+</html>

@@ -1,0 +1,58 @@
+#container .catItems, #container .catItems .catItem, #container .catItems .catItem .itemPrice {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex; }
+
+#container {
+  max-width: 1200px;
+  margin: 0 auto; }
+  #container .catalog_title {
+    text-align: center; }
+  #container .catItems {
+    -webkit-flex: 1 0 auto;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap; }
+    #container .catItems .catItem {
+      max-width: 300px;
+      min-width: 210px;
+      -webkit-box-direction: normal;
+      -webkit-box-orient: vertical;
+      -moz-box-direction: normal;
+      -moz-box-orient: vertical;
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      text-align: center; }
+      #container .catItems .catItem > img {
+        height: auto;
+        width: 100%; }
+      #container .catItems .catItem .itemPrice {
+        margin: 0.5em 0;
+        -webkit-box-align: baseline;
+        -moz-box-align: baseline;
+        -ms-flex-align: baseline;
+        -webkit-align-items: baseline;
+        align-items: baseline;
+        -webkit-box-pack: center;
+        -moz-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center; }
+        #container .catItems .catItem .itemPrice span {
+          font-weight: bold;
+          font-size: 120%;
+          margin: 0 0.5em 0 0; }
+        #container .catItems .catItem .itemPrice button {
+          margin: 0 1em;
+          background: #333;
+          border: none;
+          color: #fff;
+          padding: 0.5em 1em;
+          cursor: pointer; }
+      #container .catItems .catItem .itemStock {
+        font-style: italic; }

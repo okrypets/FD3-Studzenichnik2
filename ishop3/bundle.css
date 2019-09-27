@@ -1,0 +1,97 @@
+#container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.CatBlock > .catItems > .CatBlockShopItems > .Item > .priceBlock > .itemPrice, .CatBlock > .catItems > .CatBlockShopItems > .Item, .CatBlock > .catItems > .CatBlockShopItems, .CatBlock > .catItems {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.CatBlock > .catItems {
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+.CatBlock > .catItems > .CatBlockShopItems {
+  width: 100%;
+}
+.CatBlock > .catItems > .CatBlockShopItems > .Item {
+  width: 100%;
+  -webkit-box-pack: justify;
+  -moz-box-pack: justify;
+  -ms-flex-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+.CatBlock > .catItems > .CatBlockShopItems > .Item > * {
+  padding: 0.3em;
+}
+.CatBlock > .catItems > .CatBlockShopItems > .Item > .itemInfo {
+  -webkit-flex: 2 0 auto;
+  -ms-flex: 2 0 auto;
+  flex: 2 0 auto;
+}
+.CatBlock > .catItems > .CatBlockShopItems > .Item > .itemInfo > h2 {
+  margin: 0.5em 0;
+}
+.CatBlock > .catItems > .CatBlockShopItems > .Item > img {
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  height: 100px;
+  width: 100px;
+}
+.CatBlock > .catItems > .CatBlockShopItems > .Item > .priceBlock {
+  text-align: right;
+}
+.CatBlock > .catItems > .CatBlockShopItems > .Item > .priceBlock > .itemPrice {
+  margin: 0.5em 0;
+  -webkit-box-pack: end;
+  -moz-box-pack: end;
+  -ms-flex-pack: end;
+  -webkit-justify-content: flex-end;
+  justify-content: flex-end;
+}
+.CatBlock > .catItems > .CatBlockShopItems > .Item > .priceBlock > .itemPrice > span {
+  font-weight: bold;
+  font-size: 120%;
+  margin: 0 0.5em 0 0;
+}
+.CatBlock > .catItems > .CatBlockShopItems > .Item > .priceBlock > .itemStock {
+  font-style: italic;
+}
+.CatBlock > .catItems > .CatBlockShopItems > .Item > .buttonBlock {
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+}
+.CatBlock > .catItems > .CatBlockShopItems > .Item > .buttonBlock > input[type=button] {
+  margin: 0 1em;
+  background: #333;
+  border: none;
+  color: #fff;
+  padding: 0.5em 1em;
+  cursor: pointer;
+}
+.CatBlock > .catItems > .CatBlockShopItems > .Item > input[type=radio]:checked {
+  background: aqua;
+}
+.CatBlock > .catItems > .CatBlockShopItems.colored {
+  background: red;
+}
+.CatBlock .ShopName .catalog_title {
+  text-align: center;
+}
+
+/*# sourceMappingURL=bundle.css.map*/

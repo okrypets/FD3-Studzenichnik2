@@ -1,0 +1,49 @@
+@import "sass/flexbox";
+
+#container {
+    max-width: 1200px;
+    margin: 0 auto;
+
+    .catalog_title {
+        text-align: center;
+    }
+    .catItems {
+        @extend %flexbox;
+        @include flex(1);
+        @include flex-wrap(wrap);
+        .catItem {
+            max-width: 300px;
+            min-width: 210px;
+            @extend %flexbox;
+            @include flex-direction(column);
+            text-align: center;
+            &>img {
+                height: auto;
+                width: 100%;
+            }
+            .itemPrice {
+                margin: 0.5em 0;
+                @extend %flexbox;
+                @include align-items(baseline);
+                @include justify-content(center);
+                span {
+                    font-weight: bold;
+                    font-size: 120%;
+                    margin: 0 0.5em 0 0;
+                }
+                button {
+                    margin: 0 1em;
+                    background: #333;
+                    border: none;
+                    color: #fff;
+                    padding: 0.5em 1em;
+                    cursor: pointer;
+                }
+            }
+            .itemStock {
+                font-style: italic;
+            }
+        }
+
+    }
+}

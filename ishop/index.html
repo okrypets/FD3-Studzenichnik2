@@ -1,0 +1,37 @@
+<!DOCTYPE html> 
+<html lang="ru">
+<head> 
+  <meta charset="utf-8" />
+  <title>Интернет-магазин iShop</title>
+</head> 
+<body> 
+  <div id="container"></div> 
+      
+  <script src="https://unpkg.com/react@15/dist/react.js"></script> 
+  <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script> 
+      
+  <script src="ishop.js"></script>
+  <link rel="stylesheet" type="text/css" href="ishop.css" />
+
+  <script>
+    //let shopCat = 'Каталог товаров';
+    let shopCat = React.createElement('h1',{},'Каталог товаров');
+    let itemArr=[
+      {itemName:'Товар 1',code:1,price:123,itemImg:'item-1.png',stock:200, expert: "Однажды, в студёную зимнюю пору"},
+      {itemName:'Товар 2',code:2,price:57,itemImg:'item-2.png',stock:2400, expert: "Я из лесу вышел; был сильный мороз."},
+      {itemName:'Товар 3',code:3,price:6464,itemImg:'item-3.png',stock:2500, expert: "Гляжу, поднимается медленно в гору"},
+      {itemName:'Товар 4',code:4,price:45,itemImg:'item-4.png',stock:2600, expert: "Лошадка, везущая хворосту воз."},
+      {itemName:'Товар 5',code:5,price:455,itemImg:'item-5.png',stock:500, expert: "И, шествуя важно, в спокойствии чинном,"},
+      {itemName:'Товар 6',code:6,price:77,itemImg:'item-6.png',stock:2000, expert: "Лошадку ведёт под уздцы мужичок"}
+    ];
+
+    ReactDOM.render(
+      React.createElement(CatBlock,{catName:shopCat,items:itemArr}),
+      //React.createElement(CatBlock, {}),
+      document.getElementById('container') 
+    );
+
+  </script>
+
+</body> 
+</html>

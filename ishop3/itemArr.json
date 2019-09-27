@@ -1,0 +1,8 @@
+[
+  {"itemName":"Товар 1","code":1,"itemPrice":123,"itemImg":"item-1.png","itemStock":200, "expert": "Однажды, в студёную зимнюю пору"},
+  {"itemName":"Товар 2","code":2,"itemPrice":57,"itemImg":"item-2.png","itemStock":2400, "expert": "Я из лесу вышел; был сильный мороз."},
+  {"itemName":"Товар 3","code":3,"itemPrice":6464,"itemImg":"item-3.png","itemStock":2500, "expert": "Гляжу, поднимается медленно в гору"},
+  {"itemName":"Товар 4","code":4,"itemPrice":45,"itemImg":"item-4.png","itemStock":2600, "expert": "Лошадка, везущая хворосту воз."},
+  {"itemName":"Товар 5","code":5,"itemPrice":455,"itemImg":"item-5.png","itemStock":500, "expert": "И, шествуя важно, в спокойствии чинном,"},
+  {"itemName":"Товар 6","code":6,"itemPrice":77,"itemImg":"item-6.png","itemStock":2000, "expert": "Лошадку ведёт под уздцы мужичок"}
+]
