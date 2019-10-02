@@ -39,7 +39,7 @@ let CatBlock = React.createClass({
 
       if (confirm('Удалить товар ?')) {
 
-          console.log('CatBlock: Подтвердили удаление ' + code);
+          console.log('Catblock: Подтвердили удаление ' + code);
 
           this.state.items.splice(this.state.items.findIndex(i => i.code === code), 1);
           this.setState({items: this.state.items});

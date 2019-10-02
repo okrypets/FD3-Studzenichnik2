@@ -17,12 +17,12 @@ let ShopItems = React.createClass({
     },
 
     deleteItem: function(EO) {
-        console.log('ShopItems: отправлен запрос на удаление товара  - '+EO.target.value + '' + this.props.itemName);
+        console.log('Shopitems: отправлен запрос на удаление товара  - '+EO.target.value + '' + this.props.itemName);
         this.props.cbRemoveitem(this.props.code);
       },
 
     clickItem: function(EO) {
-        console.log('ShopItems: Клик по товару с кодом:'+ EO.target.value + ' ' + this.props.itemName);
+        console.log('Shopitems: Клик по товару с кодом:'+ EO.target.value + ' ' + this.props.itemName);
         this.props.cbItemClickSelected(this.props.code);
 
     },
