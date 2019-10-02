@@ -31,7 +31,7 @@ class CatBlock extends React.Component {
                 itemStock:PropTypes.number.isRequired,
             })
         ),
-        /*validateItemNameValue: PropTypes.boolean*/
+
         startWorkmode: PropTypes.number,   /* 1 - карточка товара, 2 - Редактирование, 3 - Добавление нового товара*/
 
         //isSingleItemAnyChange: PropTypes.boolen,
@@ -44,12 +44,11 @@ class CatBlock extends React.Component {
     };
 
     state = {
-        editedItemCode: null,
-        selectedItemCode: null,
+        editedItemCode:0,
+        selectedItemCode: 0,
         items: this.props.items,
         selecteditem: this.props.items,
-        editeditem: [],
-        workMode: null,
+        workMode: 0,
 
         isSingleItemChange: false,
 
@@ -61,23 +60,12 @@ class CatBlock extends React.Component {
         changedItemStock:0,
 
         /*Add New*/
-        newCode: this.props.items.length,
-
-        /*Validation Boolen*/
-
-        /*validateExpert: '',
-        validateImage: '',
-        validatePrice: '',
-        validateStock: '',*/
-
+        newCode: 0,
     };
-
-
 
     clickItem = (code) =>  {
         // устанавливаем в стейте код товара, по которому был клик
         this.setState( {selectedItemCode:code, workMode:1}, this.showSelectedSingleItem );
-        //this.setState( {workMode:1} );
 
     };
 
@@ -98,10 +86,19 @@ class CatBlock extends React.Component {
         //console.log(`${this.state.workMode} - ${this.state.editedItemCode}`);
     };
     addNewItem = () => {
-        this.setState( {workMode: 3}, this.showSelectedSingleItem);
+        this.clearState();
+        this.setState({workMode: 3}, this.showSelectedSingleItem);
     };
 
-
+    clearState = () => {
+        this.setState({
+            selectedItemCode: 0,
+            changedNameItemText: '',
+            changedItemExpert: '',
+            changedItemImage: '',
+            changedItemPrice: 0,
+            changedItemStock: 0});
+    };
 
 
     onChangedVoteitemName = (EO) => {
@@ -128,26 +125,30 @@ class CatBlock extends React.Component {
 
     ChangeWorkmodeonCalcel = () => {
 
-        //this.setState({items: this.props.items});
-        this.setState({workMode: 0});
-        this.setState({selectedItemCode: 0});
-        this.setState({editedItemCode: 0});
+        this.setState({workMode: 0, selectedItemCode: 0, editedItemCode: 0});
     };
 
     showSelectedSingleItem = () => {
 
         let items = this.state.items.filter(item => item.code === this.state.selectedItemCode);
-
-        this.setState( {selecteditem: items});
-
-        this.setState( {changedNameItemText:`${items.map(i => i.itemName)}`});
-        this.setState( {changedItemExpert:`${items.map(i => i.expert)}`});
-        this.setState( {changedItemImage:`${items.map(i => i.itemImg)}`});
-        this.setState( {changedItemPrice:+`${items.map(i => i.itemPrice)}`});
-        this.setState( {changedItemStock:+`${items.map(i => i.itemStock)}`});
-
         console.log(items);
-        console.log(this.state.selectedItemCode);
+
+        for (let {itemName, expert, itemImg, itemPrice, itemStock} of items) {
+            this.setState( {
+                changedNameItemText:itemName,
+                changedItemExpert:expert,
+                changedItemImage:itemImg,
+                changedItemPrice:itemPrice,
+                changedItemStock:itemStock});
+        }
+
+        let newcode = this.state.items.length + 1;
+        this.setState( {
+            selecteditem: items,
+            newCode: newcode,
+        });
+
+        console.log(`Код выбранного товара ${this.state.selectedItemCode}`);
     };
 
     SaveEditedItem = () => {
@@ -159,37 +160,30 @@ class CatBlock extends React.Component {
                 item.itemStock = +this.state.changedItemStock;
         });
 
-        if (this.state.Workmode===3) {
-            this.setState(prevState => ({newCode: prevState.newCode++}) );
-
-            let newItem = this.state.selecteditem.map(item => {
-                item.itemName = this.state.changedNameItemText;
-                item.expert = this.state.changedItemExpert;
-                item.itemImg = this.state.changedItemImage;
-                item.itemPrice = +this.state.changedItemPrice;
-                item.itemStock = +this.state.changedItemStock;
-            });
-            this.setState({selecteditem: [...this.state.selecteditem, newItem]})
-        }
-
-        //editedItem=editedIte.map()
-        //this.setState({items: this.props.items});
-        this.setState({workMode: 0});
-        this.setState({selectedItemCode: 0});
-        this.setState( {changedNameItemText: ''});
-        this.setState( {changedItemExpert: ''});
-        this.setState( {changedItemImage: ''});
-        this.setState( {changedItemPrice: 0});
-        this.setState( {changedItemStock: 0});
-
-
+        this.setState({
+            workMode: 0,
+            isSingleItemChange: false,
+        }, this.clearState);
     };
 
-    addNewSingleItem = () => {
-        //let newCode = this.state.items.length;
-
-        this.setState(prevState => ({newCode: ++prevState.newCode}) );
-
+    SaveADDItem = () => {
+        let items = this.state.items;
+        let newItem = [
+            {
+                itemName : this.state.changedNameItemText,
+                code:this.state.newCode,
+                itemImg : this.state.changedItemImage,
+                itemPrice : +this.state.changedItemPrice,
+                itemStock : +this.state.changedItemStock,
+                expert : this.state.changedItemExpert,
+            }
+        ];
+        items.push(...newItem);
+        this.setState({
+            workMode: 0,
+            isSingleItemChange: false,
+            items: items,
+        }, this.clearState);
     };
 
     render() {
@@ -215,22 +209,13 @@ class CatBlock extends React.Component {
             startWorkmode = {this.state.workMode}
         />
       );
-      //let selectedSingleItemCode = this.state.selecteditem.map( item =>
+
         let selectedSingleItemCode =  <SingleItem
-              /*key = {item.code}
-              code = {item.code}
-              itemImg = {item.itemImg}
-              itemName = {item.itemName}
-              expert = {item.expert}
-              itemPrice = {item.itemPrice}
-              itemStock = {item.itemStock}*/
 
+              addItemnewCode = {this.state.newCode}
 
-
-              //selectedSingleItem = {this.state.selecteditem}
               startWorkmode = {this.state.workMode}
 
-              //validateItemNameValue = {this.state.validateNameItem}
               cbEditeItem = {this.editSingleItem}
 
               cbChangedVoteitemName = {this.onChangedVoteitemName} /*cb содержимое редактируемого itemName*/
@@ -254,14 +239,14 @@ class CatBlock extends React.Component {
               cbChangeWorkmodeonCalcel = {this.ChangeWorkmodeonCalcel} /* cb Отмена редактирования*/
 
               cbSaveEditItem = {this.SaveEditedItem} /* cb Сохранение редактируемого товара*/
+              cbSaveAddItem = {this.SaveADDItem} /* cb Сохранение нового товара*/
 
               WarrValidString = {this.props.WarrValidString}
               WarrValidNumber = {this.props.WarrValidNumber}
               WarrValidURL = {this.props.WarrValidURL}
               WarrValidInteger = {this.props.WarrValidInteger}
-          />
-     //);
-;
+          />;
+
       return (
           <div>
              <div className = 'CatBlock'>
@@ -277,7 +262,7 @@ class CatBlock extends React.Component {
                       type ='button'
                       value = 'Добавить новый товар'
                       onClick = {this.addNewItem}
-                      disabled={this.state.workMode===2}
+                      disabled={this.state.workMode===2 || this.state.workMode===3}
                   />
             </div>
             <div className= 'SingleItemCode'>
@@ -286,6 +271,5 @@ class CatBlock extends React.Component {
           </div>
       );
     }
-  
   }
 export default CatBlock;

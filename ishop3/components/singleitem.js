@@ -30,7 +30,7 @@ class SingleItem  extends React.Component {
                 itemStock:PropTypes.number.isRequired,
             })
         ), // - выбранный товар
-
+        selectedItemCode:PropTypes.number,
         /*for validation*/
         ValuechangedNameItemText: PropTypes.string,
         ValuechangedItemExpert: PropTypes.string,
@@ -39,7 +39,7 @@ class SingleItem  extends React.Component {
         ValuechangedItemStock: PropTypes.number,
 
         //isSingleItemAnyChange: PropTypes.boolen,
-
+        addItemnewCode: PropTypes.number,
 
         editedItemCode: PropTypes.number,
         startWorkmode: PropTypes.number,   //* 1 - карточка товара, 2 - Редактирование, 3 - Добавление нового товара*/
@@ -74,27 +74,31 @@ class SingleItem  extends React.Component {
         this.props.cbSaveEditItem();
     };
 
+    saveNEW = () => {
+        this.props.cbSaveAddItem();
+    };
+
     render() {
         if ( this.props.startWorkmode===1 ) {
             return (
                 <div className = 'CatBlockSingleItem'>
                     <h2 className= 'SingleItemTitle'>
-                        {this.props.itemName}
+                        {this.props.ValuechangedNameItemText}
                     </h2>
-                    <div><span>id:</span> {this.props.code} </div>
-                    <div><span>Description:</span> {this.props.expert}</div>
-                    <div><span>Image:</span> {this.props.itemImg}</div>
-                    <div><span>Price:</span> {this.props.itemPrice}</div>
-                    <div><span>Stock:</span> {this.props.itemStock}</div>
+                    <div><span>id:</span> {this.props.selectedItemCode} </div>
+                    <div><span>Description:</span> {this.props.ValuechangedItemExpert}</div>
+                    <div><span>Image:</span> {this.props.ValuechangedItemImage}</div>
+                    <div><span>Price:</span> {this.props.ValuechangedItemPrice}</div>
+                    <div><span>Stock:</span> {this.props.ValuechangedItemStock}</div>
                 </div>
             );
-        } else if ( this.props.startWorkmode===2 ) {
+        } else if ( this.props.startWorkmode===2 || this.props.startWorkmode===3 ) {
             return (
                 <div className = 'CatBlockSingleItem'>
                     <h2 className= 'SingleItemTitle'>
-                        Edit existing Product
+                        {this.props.startWorkmode===2 ? 'Edit existing Product' : 'Add New Product'}
                     </h2>
-                    <div><span>id:</span> {this.props.code}</div>
+                    <div><span>id:</span> {this.props.startWorkmode===3 ? this.props.addItemnewCode : this.props.selectedItemCode}</div>
                     <div>
                         <span>Product Name:</span> <input type='text' onChange={this.voteitemName} value={this.props.ValuechangedNameItemText} />
                         {
@@ -133,8 +137,8 @@ class SingleItem  extends React.Component {
                     <div className='buttonBlock'>
                         <input
                             type = 'button'
-                            value = 'Save'
-                            onClick = {this.saveEdit}
+                            value = {this.props.startWorkmode===2 ? 'Save' : 'Add' }
+                            onClick = {this.props.startWorkmode===2 ? this.saveEdit : this.saveNEW }
                             disabled={
                                 (!this.props.ValuechangedItemStock) ||
                                 (!this.props.ValuechangedItemPrice) ||
@@ -151,7 +155,7 @@ class SingleItem  extends React.Component {
                     </div>
                 </div>
                 );
-        } else if ( this.props.startWorkmode===3 ) {
+        } /*else if ( this.props.startWorkmode===3 ) {
             return (
                 <div className = 'CatBlockSingleItem'>
                     <h2 className= 'SingleItemTitle'>
@@ -214,17 +218,9 @@ class SingleItem  extends React.Component {
                     </div>
                 </div>
             );
-        } else {
+        }*/ else {
             return null;
         }
     }
 }
 export default SingleItem;
-/*{
-                            ((this.props.workMode==1) && this.state.editedItemCode ) &&
-                            this.props.itemName
-                            (this.props.workMode==2) &&
-                            (`${this.props.singleItemTitleEdit} ${this.props.itemName}`)
-                            (this.props.workMode==3) &&
-                            this.props.singleItemTitleAddNew
-                        }*/

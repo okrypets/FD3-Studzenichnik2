@@ -47,7 +47,7 @@ class ShopItems  extends React.Component {
         return (
 
             <div className = {`CatBlockShopItems ${(this.props.selectedItemCode===this.props.code) ? 'colored' : ''}`}>
-                <div className = 'Item' data = {this.props.code} onClick = {!this.props.isSingleItemAnyChange ? this.clickItem : null} >
+                <div className = 'Item' data = {this.props.code} onClick = {!(this.props.isSingleItemAnyChange ||this.props.startWorkmode === 3 ) ? this.clickItem : null} >
                     <img className ='itemImg' src = {`./components/images/${this.props.itemImg}`} alt = ''/>
                     <div className = 'itemInfo'>
                         <h2 className = 'itemName'>{this.props.itemName}</h2>
@@ -70,7 +70,7 @@ class ShopItems  extends React.Component {
                          type ='button'
                          value = 'Удалить товар'
                          onClick = {this.deleteItem}
-                         disabled={this.props.startWorkmode===2}
+                         disabled={this.props.startWorkmode===2 || this.props.startWorkmode === 3}
                      />
 
                     <input
@@ -78,7 +78,7 @@ class ShopItems  extends React.Component {
                         value = 'Редактировать'
                         className= 'red'
                         onClick = {this.editeItem}
-                        disabled  = {(this.props.isSingleItemAnyChange && this.props.startWorkmode===2)}
+                        disabled  = {(this.props.isSingleItemAnyChange && this.props.startWorkmode===2 || this.props.startWorkmode === 3)}
                     />
                 </div>
             </div>
