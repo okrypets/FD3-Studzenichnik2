@@ -2,5 +2,25 @@
 
 #container {
     max-width: 1200px;
-    margin: 0 auto;  
+    margin: 0 auto;
+    .CatBlock {
+            input {
+                &[type="button"] {
+                    margin: 0 1em;
+                    padding: 0.2em;
+                    background: #333;
+                    border: none;
+                    color: #fff;
+                    padding: 0.5em 1em;
+                    cursor: pointer;
+                    &.red {
+                        background-color: slategrey;
+                    }
+                }
+                &:disabled {
+                    opacity: 0.2;
+                    cursor: initial;
+                }
+            }
+    }
 }

@@ -1,4 +1,4 @@
-.CatBlock > .catItems > .CatBlockShopItems > .Item > .priceBlock > .itemPrice, .CatBlock > .catItems > .CatBlockShopItems > .Item, .CatBlock > .catItems > .CatBlockShopItems, .CatBlock > .catItems {
+.CatBlock > .catItems > .CatBlockShopItems > .buttonBlock, .CatBlock > .catItems > .CatBlockShopItems > .Item > .priceBlock > .itemPrice, .CatBlock > .catItems > .CatBlockShopItems > .Item, .CatBlock > .catItems > .CatBlockShopItems, .CatBlock > .catItems {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -58,6 +58,11 @@
   -ms-flex-pack: end;
   -webkit-justify-content: flex-end;
   justify-content: flex-end;
+  -webkit-box-align: baseline;
+  -moz-box-align: baseline;
+  -ms-flex-align: baseline;
+  -webkit-align-items: baseline;
+  align-items: baseline;
 }
 .CatBlock > .catItems > .CatBlockShopItems > .Item > .priceBlock > .itemPrice > span {
   font-weight: bold;
@@ -67,21 +72,31 @@
 .CatBlock > .catItems > .CatBlockShopItems > .Item > .priceBlock > .itemStock {
   font-style: italic;
 }
-.CatBlock > .catItems > .CatBlockShopItems > .Item > .buttonBlock {
+.CatBlock > .catItems > .CatBlockShopItems > .Item > input[type=radio]:checked {
+  background: aqua;
+}
+.CatBlock > .catItems > .CatBlockShopItems > .buttonBlock {
   -webkit-flex: 0 0 auto;
   -ms-flex: 0 0 auto;
   flex: 0 0 auto;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -moz-box-direction: normal;
+  -moz-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
-.CatBlock > .catItems > .CatBlockShopItems > .Item > .buttonBlock > input[type=button] {
-  margin: 0 1em;
+.CatBlock > .catItems > .CatBlockShopItems > .buttonBlock > input[type=button] {
+  margin: 0.2em;
   background: #333;
   border: none;
   color: #fff;
   padding: 0.5em 1em;
   cursor: pointer;
 }
-.CatBlock > .catItems > .CatBlockShopItems > .Item > input[type=radio]:checked {
-  background: aqua;
+.CatBlock > .catItems > .CatBlockShopItems > .buttonBlock > input[type=button].red {
+  background-color: slategrey;
 }
 .CatBlock > .catItems > .CatBlockShopItems.colored {
   background: red;

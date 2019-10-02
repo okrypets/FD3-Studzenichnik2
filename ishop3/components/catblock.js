@@ -1,51 +1,85 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './catblock.css';
 
-import ShopItems from './shopitems';
-import ShopNameTitle from './shopname';
+import ShopItems from './shopitems.js';
+import ShopNameTitle from './shopname.js';
+import SingleItem from './singleitem.js';
 
-let CatBlock = React.createClass({
+class CatBlock extends React.Component {
 
-    displayName: 'CatBlock',
-  
-    getDefaultProps: function() {
-      return {
-          shopName: React.createElement('h1',{className:"catalog_title"},'Товаров нет!'),  //умолчательное значение Имени каталога
-          emptyShopName: React.createElement('h1',{className:"catalog_title"},'Все товары были удалены!'),  //умолчательное значение Имени каталога если массив пуст
-      }
-    },
+    //displayName: 'Catblock',
 
-    propTypes: {
-        shopName: React.PropTypes.object.isRequired,  //получаем Имя каталога в пропсах
-        emptyShopName: React.PropTypes.object.isRequired, // получаем Имя каталога если все товары удалены
-        items:React.PropTypes.arrayOf(
-            React.PropTypes.shape({
-                code: React.PropTypes.number.isRequired,
-                itemImg: React.PropTypes.string.isRequired,
-                itemName: React.PropTypes.string.isRequired,
-                expert:React.PropTypes.string.isRequired,
-                itemPrice:React.PropTypes.number.isRequired,
-                itemStock:React.PropTypes.number.isRequired,
+    static defaultProps = {
+       shopName: 'Это интернет-магазин"!',
+       emptyShopName: 'Все товары были удалены!',
+    };
+
+    static propTypes = {
+        shopName: PropTypes.string.isRequired,
+        singleItemTitleEdit: PropTypes.string,
+        singleItemTitleAddNew: PropTypes.string,
+        emptyShopName: PropTypes.string.isRequired,
+        items:PropTypes.arrayOf(
+            PropTypes.shape({
+                code: PropTypes.number.isRequired,
+                itemImg: PropTypes.string.isRequired,
+                itemName: PropTypes.string.isRequired,
+                expert:PropTypes.string.isRequired,
+                itemPrice:PropTypes.number.isRequired,
+                itemStock:PropTypes.number.isRequired,
             })
         ),
-    },
+        /*validateItemNameValue: PropTypes.boolean*/
+        startWorkmode: PropTypes.number,   /* 1 - карточка товара, 2 - Редактирование, 3 - Добавление нового товара*/
 
-    getInitialState: function() {
-      return {
-        selectedItemCode: null,    //Код товара, на который был клик, по умолчанию null
-        items: this.props.items,   //массив товаров
-      };
-    },
+        //isSingleItemAnyChange: PropTypes.boolen,
 
 
-    clickItem: function(code) {
+        WarrValidString: PropTypes.string.isRequired, /*string*/
+        WarrValidNumber: PropTypes.string.isRequired, /*number > 0*/
+        WarrValidURL: PropTypes.string.isRequired, /*url*/
+        WarrValidInteger: PropTypes.string.isRequired, /*number Integer*/
+    };
+
+    state = {
+        editedItemCode: null,
+        selectedItemCode: null,
+        items: this.props.items,
+        selecteditem: this.props.items,
+        editeditem: [],
+        workMode: null,
+
+        isSingleItemChange: false,
+
+        /* Edit|Add input value*/
+        changedNameItemText: '',
+        changedItemExpert:'',
+        changedItemImage: '',
+        changedItemPrice:null,
+        changedItemStock:null,
+
+
+        /*Validation Boolen*/
+
+        /*validateExpert: '',
+        validateImage: '',
+        validatePrice: '',
+        validateStock: '',*/
+
+    };
+
+
+
+    clickItem = (code) =>  {
         // устанавливаем в стейте код товара, по которому был клик
-        this.setState( {selectedItemCode:code} );
+        this.setState( {selectedItemCode:code, workMode:1}, this.showSelectedSingleItem );
+        //this.setState( {workMode:1} );
 
-    },
+    };
 
-    removeItemconfirm: function (code) {
+    removeItemconfirm = (code) =>  {
 
       if (confirm('Удалить товар ?')) {
           // если в окне нажали ОК -
@@ -55,38 +89,173 @@ let CatBlock = React.createClass({
           this.setState({items: this.state.items});
       }
       console.log(this.state.items);
-    },
+    };
+
+    editSingleItem = (code) => {
+        this.setState( {editedItemCode:code, selectedItemCode:code, workMode: 2}, this.showSelectedSingleItem);
+        //console.log(`${this.state.workMode} - ${this.state.editedItemCode}`);
+    };
+    addNewItem = () => {
+        this.setState( {workMode: 3});
+    };
 
 
-    render: function() {
+
+
+    onChangedVoteitemName = (EO) => {
+        this.setState({changedNameItemText: EO});
+        this.setState({isSingleItemChange: true});
+    };
+    onChangedVoteitemExpert = (EO) => {
+        this.setState({changedItemExpert: EO});
+        this.setState({isSingleItemChange: true});
+    };
+    onChangedVoteitemImage = (EO) => {
+        this.setState({changedItemImage: EO});
+        this.setState({isSingleItemChange: true});
+    };
+    onChangedVoteitemPrice = (EO) => {
+        this.setState({changedItemPrice: +EO});
+        this.setState({isSingleItemChange: true});
+    };
+    onChangedVoteitemStock = (EO) => {
+        this.setState({changedItemStock: +EO});
+        this.setState({isSingleItemChange: true});
+    };
+
+
+    ChangeWorkmodeonCalcel = () => {
+
+        //this.setState({items: this.props.items});
+        this.setState({workMode: null});
+        this.setState({selectedItemCode: null});
+    };
+
+    showSelectedSingleItem = () => {
+
+        let items = this.state.items.filter(item => item.code === this.state.selectedItemCode);
+
+        this.setState( {selecteditem: items});
+
+        this.setState( {changedNameItemText:`${items.map(i => i.itemName)}`});
+        this.setState( {changedItemExpert:`${items.map(i => i.expert)}`});
+        this.setState( {changedItemImage:`${items.map(i => i.itemImg)}`});
+        this.setState( {changedItemPrice:+`${items.map(i => i.itemPrice)}`});
+        this.setState( {changedItemStock:+`${items.map(i => i.itemStock)}`});
+
+        console.log(items);
+        console.log(this.state.selectedItemCode);
+    };
+
+    SaveEditedItem = () => {
+        this.state.selecteditem.forEach(item => {
+                item.itemName = this.state.changedNameItemText;
+                item.expert = this.state.changedItemExpert;
+                item.itemImg = this.state.changedItemImage;
+                item.itemPrice = +this.state.changedItemPrice;
+                item.itemStock = +this.state.changedItemStock;
+        });
+
+
+        //editedItem=editedIte.map()
+        //this.setState({items: this.props.items});
+        this.setState({workMode: null});
+        this.setState({selectedItemCode: null});
+        //this.setState( {editeditem: [...editedItem]});
+    };
+
+    render() {
       // в переменной массив товаров,
-      // передаем в компонент ShopItems пропсы по каждому товару из массива
-      let itemsCode=this.props.items.map( item =>
-        React.createElement(ShopItems, {
-            key:item.code,                                     //передаем в качестве пропса компоненту ShopItems значение key === коду товара
-            code:item.code,
-            itemImg:item.itemImg,
-            itemName:item.itemName,
-            expert:item.expert,
-            itemPrice:item.itemPrice,
-            itemStock:item.itemStock,
+      // передаем в компонент Shopitems пропсы по каждому товару из массива
+      let itemsCode=this.state.items.map( item =>
+        <ShopItems
+            key = {item.code}
+            code = {item.code}
+            itemImg = {item.itemImg}
+            itemName = {item.itemName}
+            expert = {item.expert}
+            itemPrice = {item.itemPrice}
+            itemStock = {item.itemStock}
 
-         cbItemClickSelected:this.clickItem,                        //callback при клике на товар
-         cbRemoveitem:this.removeItemconfirm,                       //callback при клике на кноку удалить
-         selectedItemCode:this.state.selectedItemCode,              //передаем в качестве пропса код выбранного товара в стейте
-         items:this.state.items,                                   //передаем в качестве пропса массив товаров в стейте
-         //changeColor:this.state.colored,                           //
-        })
+         cbItemClickSelected = {this.clickItem}
+         cbRemoveitem = {this.removeItemconfirm}
+         cbEditeItem = {this.editSingleItem}
+         selectedItemCode = {this.state.selectedItemCode}
+         items = {this.state.items}
+
+            isSingleItemAnyChange = {this.state.isSingleItemChange}
+            startWorkmode = {this.state.workMode}
+        />
+      );
+      let selectedSingleItemCode = this.state.selecteditem.map( item =>
+          <SingleItem
+              key = {item.code}
+              code = {item.code}
+              itemImg = {item.itemImg}
+              itemName = {item.itemName}
+              expert = {item.expert}
+              itemPrice = {item.itemPrice}
+              itemStock = {item.itemStock}
+
+              //selectedSingleItem = {this.state.selecteditem}
+              startWorkmode = {this.state.workMode}
+
+              //validateItemNameValue = {this.state.validateNameItem}
+              cbEditeItem = {this.editSingleItem}
+
+              cbChangedVoteitemName = {this.onChangedVoteitemName} /*cb содержимое редактируемого itemName*/
+              ValuechangedNameItemText = {this.state.changedNameItemText} /*Value - редактируемого itemName через пропс*/
+
+              cbChangedVoteExpert = {this.onChangedVoteitemExpert}  /*cb содержимое редактируемого expert*/
+              ValuechangedItemExpert = {this.state.changedItemExpert}  /*Value - редактируемого expert через пропс*/
+
+              cbChangedVoteImage = {this.onChangedVoteitemImage}  /*cb содержимое редактируемого image*/
+              ValuechangedItemImage = {this.state.changedItemImage}  /*Value - редактируемого image через пропс*/
+
+              cbChangedVotePrice = {this.onChangedVoteitemPrice}  /*cb содержимое редактируемого price*/
+              ValuechangedItemPrice = {this.state.changedItemPrice}  /*Value - редактируемого price через пропс*/
+
+              cbChangedVoteStock = {this.onChangedVoteitemStock}  /*cb содержимое редактируемого Stock*/
+              ValuechangedItemStock = {this.state.changedItemStock}  /*Value - редактируемого Stock через пропс*/
+
+
+              selectedItemCode = {this.state.selectedItemCode}
+
+              cbChangeWorkmodeonCalcel = {this.ChangeWorkmodeonCalcel} /* cb Отмена редактирования*/
+
+              cbSaveEditItem = {this.SaveEditedItem} /* cb Сохранение редактируемого товара*/
+
+              WarrValidString = {this.props.WarrValidString}
+              WarrValidNumber = {this.props.WarrValidNumber}
+              WarrValidURL = {this.props.WarrValidURL}
+              WarrValidInteger = {this.props.WarrValidInteger}
+          />
       );
 
-      return React.DOM.div( {className:'CatBlock'},
-          //рендерим div элемент с классом CatBlock
-          // блок состоит из имени каталога, передаем имя в качестве пропса в компонент ShopNameTitle
-          // и div блок с массивом товаров, массив из itemsCode
-        React.createElement(ShopNameTitle, {shopName:this.props.shopName, emptyShopName:this.props.emptyShopName, items:this.state.items}),
-        React.DOM.div( {className:'catItems'}, itemsCode ),
+      return (
+          <div>
+             <div className = 'CatBlock'>
+                  <ShopNameTitle
+                        shopName = {this.props.shopName}
+                        emptyShopName = {this.props.emptyShopName}
+                        items = {this.state.items}
+                  />
+                  <div className ='catItems'>
+                      {itemsCode}
+                  </div>
+                  <input
+                      type ='button'
+                      value = 'Добавить новый товар'
+                      onClick = {this.addNewItem}
+                      disabled={this.state.workMode===2}
+                  />
+            </div>
+            <div className= 'SingleItemCode'>
+              {selectedSingleItemCode}
+            </div>
+          </div>
       );
-    },
+    }
   
-  });
+  }
 export default CatBlock;

@@ -1,19 +1,31 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import './shopname.css';
 
-let ShopNameTitle = React.createClass({
+class ShopNameTitle extends React.Component {
 
-    displayName: 'ShopNameTitle',
+    //displayName: 'ShopNameTitle',
 
-    propTypes: {
-        shopName: React.PropTypes.object.isRequired,  //получаем Имя каталога в пропсах
-        emptyShopName: React.PropTypes.object.isRequired, // получаем Имя каталога если все товары удалены
-        items:React.PropTypes.array,                  // если массив пустой - emptyShopName
-    },
+    static  propTypes = {
+        shopName: PropTypes.string.isRequired,
+        emptyShopName: PropTypes.string.isRequired,
+        items:PropTypes.array,                  // если массив пустой - emptyShopName
+    };
 
-    render: function() {
-        return React.DOM.div( {className:'ShopName'}, ((this.props.items.length === 0) ? this.props.emptyShopName : this.props.shopName ) );
-    },
+    render() {
+        return (
+            <div className = 'ShopName'>
+                <h1 className="catalog_title">
+                    {
+                        (this.props.items.length === 0)
+                            ? this.props.emptyShopName
+                            : this.props.shopName
+                    }
+                </h1>
+            </div>
+        );
+    }
 
-});
+}
 export default ShopNameTitle;

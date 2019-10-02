@@ -2,5 +2,21 @@
   max-width: 1200px;
   margin: 0 auto;
 }
+#container .CatBlock input[type=button] {
+  margin: 0 1em;
+  padding: 0.2em;
+  background: #333;
+  border: none;
+  color: #fff;
+  padding: 0.5em 1em;
+  cursor: pointer;
+}
+#container .CatBlock input[type=button].red {
+  background-color: slategrey;
+}
+#container .CatBlock input:disabled {
+  opacity: 0.2;
+  cursor: initial;
+}
 
 /*# sourceMappingURL=catblock.css.map */

@@ -16,11 +16,16 @@ module.exports = {
     module:{ 
         rules:[
             {
+                test: /\.jsx?$/, // какие файлы обрабатывать
+                exclude: /node_modules/, // какие файлы пропускать
+                use: { loader: "babel-loader" }
+            },
+            {
                 test: /\.css$/,
                 use: extractCSS.extract({
                     use: ["css-loader"]
                 })
-            }            
+            }
         ] 
     },
     plugins: [
