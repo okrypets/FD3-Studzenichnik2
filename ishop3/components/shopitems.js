@@ -30,17 +30,17 @@ class ShopItems  extends React.Component {
     deleteItem = () =>  {
         /*передаем через callback код товара, в котором нажали кнопку удалить*/
         this.props.cbRemoveitem(this.props.code);
-    }
+    };
 
     clickItem = () => {
         /*передаем через callback код товара, по которому кликнули*/
         this.props.cbItemClickSelected(this.props.code);
-    }
+    };
     editeItem = () => {
         /*передаем через callback код товара, по которому кликнули*/
         console.log(`Кликнули Редактировать по товару с кодом ${this.props.code}`);
         this.props.cbEditeItem(this.props.code);
-    }
+    };
 
     render() {
 
