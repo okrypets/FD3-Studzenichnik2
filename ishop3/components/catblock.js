@@ -60,7 +60,8 @@ class CatBlock extends React.Component {
         changedItemStock:0,
 
         /*Add New*/
-        newCode: 0,
+        newCode: this.props.items.length,
+        maxCode: 0,
     };
 
     clickItem = (code) =>  {
@@ -87,11 +88,15 @@ class CatBlock extends React.Component {
     };
     addNewItem = () => {
         this.clearState();
-        this.setState({workMode: 3}, this.showSelectedSingleItem);
+        /*Получаем максимлаьное число среди code для получения нового ID*/
+        let maxcode=this.state.items.reduce((prev,cur) => cur.code > prev.code ? cur : prev,this.state.newCode);
+        this.setState({workMode: 3, newCode: maxcode + 1, maxCode: maxcode }, this.showSelectedSingleItem);
     };
 
     clearState = () => {
         this.setState({
+            workMode: 0,
+            isSingleItemChange: false,
             selectedItemCode: 0,
             changedNameItemText: '',
             changedItemExpert: '',
@@ -123,11 +128,6 @@ class CatBlock extends React.Component {
     };
 
 
-    ChangeWorkmodeonCalcel = () => {
-
-        this.setState({workMode: 0, selectedItemCode: 0, editedItemCode: 0});
-    };
-
     showSelectedSingleItem = () => {
 
         let items = this.state.items.filter(item => item.code === this.state.selectedItemCode);
@@ -142,10 +142,8 @@ class CatBlock extends React.Component {
                 changedItemStock:itemStock});
         }
 
-        let newcode = this.state.items.length + 1;
         this.setState( {
             selecteditem: items,
-            newCode: newcode,
         });
 
         console.log(`Код выбранного товара ${this.state.selectedItemCode}`);
@@ -160,10 +158,7 @@ class CatBlock extends React.Component {
                 item.itemStock = +this.state.changedItemStock;
         });
 
-        this.setState({
-            workMode: 0,
-            isSingleItemChange: false,
-        }, this.clearState);
+        this.clearState();
     };
 
     SaveADDItem = () => {
@@ -180,8 +175,6 @@ class CatBlock extends React.Component {
         ];
         items.push(...newItem);
         this.setState({
-            workMode: 0,
-            isSingleItemChange: false,
             items: items,
         }, this.clearState);
     };
@@ -236,7 +229,7 @@ class CatBlock extends React.Component {
 
               selectedItemCode = {this.state.selectedItemCode}
 
-              cbChangeWorkmodeonCalcel = {this.ChangeWorkmodeonCalcel} /* cb Отмена редактирования*/
+              cbChangeWorkmodeonCalcel = {this.clearState} /* cb Отмена редактирования - очистка State*/
 
               cbSaveEditItem = {this.SaveEditedItem} /* cb Сохранение редактируемого товара*/
               cbSaveAddItem = {this.SaveADDItem} /* cb Сохранение нового товара*/
