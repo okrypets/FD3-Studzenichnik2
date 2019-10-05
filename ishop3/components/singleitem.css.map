@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":[],"names":[],"mappings":"","file":"singleitem.css"}
+{"version":3,"sourceRoot":"","sources":["sass/_flexbox.scss","singleitem.scss"],"names":[],"mappings":"AAaA;EANE;EACA;EACA;EACA;EACA;;;ACNI;EACE;EDyEN,mBCvEyB;ED2EvB,eC3EuB;ED6EzB,WC7EyB;;AACnB;EACE;EACA;;AAEF;EACE;EACA;;AAEF;EDgIJ;EACA;EACA;EAgBF,yBCjJiC;EDkJjC,iBClJiC;;AAEvB;EACE;EACA;EACA;EACA;EACA;EACA;EACA;;AACA;EACE;;AAGJ;EACE;EACA","file":"singleitem.css"}

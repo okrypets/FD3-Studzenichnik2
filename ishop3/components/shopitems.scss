@@ -23,8 +23,7 @@
           }
           >img {
             @include flex(0);
-            height: 100px;
-            width: 100px;
+            width: 4em;
           }
           >.priceBlock {
             text-align: right;
@@ -56,6 +55,7 @@
           @include flex(0);
           @extend %flexbox;
           @include flex-direction(column);
+          @include justify-content(center);
           >input {
             &[type="button"] {
               margin: 0.2em;

@@ -5,11 +5,12 @@ import ReactDOM from 'react-dom';
 
 import CatBlock from './components/catblock.js';
 
-let shopNameText = 'Каталог товаров';
-let emptyShopNameText = 'Oops!';
-let singleItemTitleAddNewText = 'Добавить новый товар';
-let singleItemTitleEditText = 'Редактировать';
+let shopNameText = 'Shop';
+let emptyShopNameText = 'Oops! No products yet.';
+let singleItemTitleAddNewText = 'Add New Product';
+let singleItemTitleEditText = 'Edit';
 let itemArr = require('./itemArr.json');
+//let itemArr = [];
 
 //Validation
 

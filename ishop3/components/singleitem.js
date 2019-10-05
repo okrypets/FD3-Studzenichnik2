@@ -20,7 +20,7 @@ class SingleItem  extends React.Component {
         cbChangedVoteStock: PropTypes.func,
         cbChangeWorkmodeonCalcel: PropTypes.func,
 
-        selectedSingleItem: PropTypes.arrayOf(
+        /*selectedSingleItem: PropTypes.arrayOf(
             PropTypes.shape({
                 code: PropTypes.number.isRequired,
                 itemImg: PropTypes.string.isRequired,
@@ -29,7 +29,7 @@ class SingleItem  extends React.Component {
                 itemPrice:PropTypes.number.isRequired,
                 itemStock:PropTypes.number.isRequired,
             })
-        ), // - выбранный товар
+        ), */// - выбранный товар
         selectedItemCode:PropTypes.number,
         /*for validation*/
         ValuechangedNameItemText: PropTypes.string,

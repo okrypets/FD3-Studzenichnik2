@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './catblock.css';
 
-import ShopItems from './shopitems.js';
+import ShopItem from './shopitem.js';
 import ShopNameTitle from './shopname.js';
 import SingleItem from './singleitem.js';
 
@@ -12,8 +12,7 @@ class CatBlock extends React.Component {
     //displayName: 'Catblock',
 
     static defaultProps = {
-       shopName: 'Это интернет-магазин"!',
-       emptyShopName: 'Все товары были удалены!',
+       shopName: 'Product Shop!',
     };
 
     static propTypes = {
@@ -72,7 +71,7 @@ class CatBlock extends React.Component {
 
     removeItemconfirm = (code) =>  {
 
-      if (confirm('Удалить товар ?')) {
+      if (confirm('Delete ?')) {
           // если в окне нажали ОК -
           //удаляем с помощью splice 1 строку в массиве в стейте по индексу. Индекс получаем сравнивая передаваемый код при клике и код в строке.
           this.state.items.splice(this.state.items.findIndex(i => i.code === code), 1);
@@ -183,7 +182,7 @@ class CatBlock extends React.Component {
       // в переменной массив товаров,
       // передаем в компонент Shopitems пропсы по каждому товару из массива
       let itemsCode=this.state.items.map( item =>
-        <ShopItems
+        <ShopItem
             key = {item.code}
             code = {item.code}
             itemImg = {item.itemImg}
@@ -253,7 +252,7 @@ class CatBlock extends React.Component {
                   </div>
                   <input
                       type ='button'
-                      value = 'Добавить новый товар'
+                      value = 'Add New'
                       onClick = {this.addNewItem}
                       disabled={this.state.workMode===2 || this.state.workMode===3}
                   />

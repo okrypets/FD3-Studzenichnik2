@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './shopitems.css';
 
-class ShopItems  extends React.Component {
+class ShopItem  extends React.Component {
 
     /*displayName: 'Shopitems',*/
 
@@ -56,26 +56,26 @@ class ShopItems  extends React.Component {
                     <div className = 'priceBlock'>
                         <div className = 'itemPrice'>
                             <span className = 'Price'>{this.props.itemPrice}</span>
-                            р.
+                            rub.
                         </div>
                         <div className = 'itemStock'>
-                            На складе:
+                            Stock:
                             <span className = 'Stock'>{this.props.itemStock}</span>
-                            /шт.
+                            /pc.
                         </div>
                     </div>
                 </div>
                 <div className = 'buttonBlock'>
                      <input
                          type ='button'
-                         value = 'Удалить товар'
+                         value = 'Delete'
                          onClick = {this.deleteItem}
                          disabled={this.props.startWorkmode===2 || this.props.startWorkmode === 3}
                      />
 
                     <input
                         type ='button'
-                        value = 'Редактировать'
+                        value = 'Edit'
                         className= 'red'
                         onClick = {this.editeItem}
                         disabled  = {(this.props.isSingleItemAnyChange && this.props.startWorkmode===2 || this.props.startWorkmode === 3)}
@@ -85,4 +85,4 @@ class ShopItems  extends React.Component {
         );
     }
 }
-export default ShopItems;
+export default ShopItem;

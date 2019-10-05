@@ -1,0 +1,44 @@
+@import "sass/_flexbox.scss";
+
+#container {
+  .SingleItemCode {
+    .CatBlockSingleItem {
+      >div {
+        padding: 0.2em 0;
+        @extend %flexbox;
+        @include flex-wrap(wrap);
+        >span {
+          font-weight: bold;
+          width: 150px;
+        }
+        >em {
+          color: red;
+          margin: 0 1em;
+        }
+        &.buttonBlock {
+          @include justify-content(flex-start);
+          input {
+            &[type="button"] {
+              margin: 0 1em;
+              padding: 0.2em;
+              background: #333;
+              border: none;
+              color: #fff;
+              padding: 0.5em 1em;
+              cursor: pointer;
+              &.red {
+                background-color: slategrey;
+              }
+            }
+            &:disabled {
+              opacity: 0.2;
+              cursor: initial;
+            }
+          }
+        }
+      }
+
+    }
+
+  }
+}
