@@ -8,7 +8,8 @@ class RainbowFrame extends React.Component {
   };
   
   render() {
-      let colors = this.props.colors.slice();
+      let colorsArr = this.props.colors;
+      /* Old Version
       let coloredDiv = colors.reduce((total, currentValue, index, colors) => {
               total = <div
                   data = {index}
@@ -17,11 +18,15 @@ class RainbowFrame extends React.Component {
                   children = {(index === 0) ? this.props.children : total} />;
           return total;
       }, 0);
-
+    */
+      let code = this.props.children;
+      for (let color of colorsArr) {
+          code = <div key={colorsArr.indexOf(color)} style={{border: `3px solid ${color}`, padding: '10px'}}>{code}</div>
+      }
 
     return (
         <Fragment>
-        {coloredDiv}
+        {code}
         </Fragment>
     );
   }
