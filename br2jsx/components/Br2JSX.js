@@ -11,9 +11,9 @@ class Br2JSX extends React.Component {
   };
   
   render() {
-
-      let text = this.props.text.replace(/(<br[\s\/]*>)/g, `\n`).split(`\n`).map((item, key) => <Fragment key ={key}>{item}<br/></Fragment>);
-
+      let textline = this.props.text.slice();
+      let text = textline.replace(/(<br[\s\/]*>)/g, `\n`).split(`\n`);
+      text = text.map((item, key) => <Fragment key ={key}>{item}{(key < text.length - 1) ?  <br/> : null}</Fragment>);
     return (
         <div className="Br2JSX">
             {text}
