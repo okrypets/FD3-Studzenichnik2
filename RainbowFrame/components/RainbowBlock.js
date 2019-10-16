@@ -9,6 +9,8 @@ class RainbowBlock extends React.Component {
       helloText: PropTypes.string,
   };
 
+
+
  render() {
    let colors = ['red','orange', 'yellow','green', '#00BFFF', 'blue', 'purple'];
 
