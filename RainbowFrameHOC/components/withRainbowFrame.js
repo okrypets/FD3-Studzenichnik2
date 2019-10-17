@@ -16,10 +16,10 @@ let withRainbowFrame = colors => Component => props => {
                 }
             }
         >
-            <Component {...props} >{code}</Component>
+            {code}
         </div>
     }
-    return code;
+    return <Component {...props} >{code}</Component>;
 
 };
 
