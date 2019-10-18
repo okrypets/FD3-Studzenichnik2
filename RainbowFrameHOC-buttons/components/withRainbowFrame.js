@@ -2,12 +2,7 @@ import React, {Fragment} from 'react';
 
 let withRainbowFrame = colors => Component => props => {
 
-    console.log(`${colors} - colors`);
-    console.log(Component);
-    console.log({...props});
-
-
-    let code = <Component {...props} />;
+    let code = <Component {...props} children ={props.children} />;
     for (let color of colors) {
         code = <div
             key={colors.indexOf(color)}
@@ -21,7 +16,7 @@ let withRainbowFrame = colors => Component => props => {
                 }
             }
         >
-           {code}
+            {code}
         </div>
     }
     return <Fragment children ={code} />;

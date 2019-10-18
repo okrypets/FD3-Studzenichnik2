@@ -2,8 +2,6 @@
 import PropTypes from 'prop-types';
 
 let DoubleButton = props => {
-    console.log(props);
-    console.log(props.children);
     return <div>
         <input type="button" value={props.caption1}/>
         {props.children}

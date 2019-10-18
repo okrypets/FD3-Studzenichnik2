@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 
 let withRainbowFrame = colors => Component => props => {
 
@@ -16,10 +16,10 @@ let withRainbowFrame = colors => Component => props => {
                 }
             }
         >
-            {code}
+           {code}
         </div>
     }
-    return <Component {...props} children ={code} />;
+    return <Fragment children ={code} />;
 
 };
 
