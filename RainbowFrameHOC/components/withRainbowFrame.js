@@ -2,7 +2,7 @@ import React from 'react';
 
 let withRainbowFrame = colors => Component => props => {
 
-    let code = props.children;
+    let code = <Component {...props} children ={props.children} />;
     for (let color of colors) {
         code = <div
             key={colors.indexOf(color)}
@@ -19,7 +19,7 @@ let withRainbowFrame = colors => Component => props => {
             {code}
         </div>
     }
-    return <Component {...props} >{code}</Component>;
+    return <Component {...props} children ={code} />;
 
 };
 

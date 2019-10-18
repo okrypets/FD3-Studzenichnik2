@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import { withRainbowFrame } from './withRainbowFrame';
 
 let colors=['red','orange', 'yellow','green', '#00BFFF', 'blue', 'purple'];
-let withRainbowFrameColors = withRainbowFrame(colors);
-let FramedFragment = withRainbowFrameColors(Fragment);
+//let withRainbowFrameColors = withRainbowFrame(colors);
+let FramedFragment = withRainbowFrame(colors)(Fragment);
 
 class RainbowBlock extends React.Component {
 
@@ -19,7 +19,7 @@ class RainbowBlock extends React.Component {
          <div className='RainbowBlock'>
 
              <FramedFragment>
-                 {this.props.helloText}
+                 <span>{this.props.helloText}</span>
              </FramedFragment>
 
          </div>
