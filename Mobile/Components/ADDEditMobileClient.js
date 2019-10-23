@@ -71,8 +71,6 @@ class ADDEditMobileClient extends React.PureComponent {
     render() {
         console.log(`ADDEditMobileClient  render`);
 
-        if (this.props.workMode === 1 || this.props.workMode === 2) {
-
             return (
                 <div className="SingleMobileClientEdit">
                     <h2 className="SingleMobileClientTitle">
@@ -103,9 +101,6 @@ class ADDEditMobileClient extends React.PureComponent {
                     <input type="button" value="Отмена" onClick = {this.onButtonCancel} />
                 </div>
             );
-        } else {
-            return null;
-        }
     }
 }
 

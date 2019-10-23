@@ -205,7 +205,7 @@ class MobileCompany extends React.PureComponent {
             </table>
         </div>
         <input type="button" value="Добавить" onClick = {this.buttonAddClicked} />
-        <ADDEditMobileClient info={this.state.editedInfo} newID={this.state.newID} workMode = {this.state.workMode}/>
+        {(this.state.workMode === 1 || this.state.workMode === 2) && <ADDEditMobileClient info={this.state.editedInfo} newID={this.state.newID} workMode = {this.state.workMode}/>}
       </div>
     )
     ;
