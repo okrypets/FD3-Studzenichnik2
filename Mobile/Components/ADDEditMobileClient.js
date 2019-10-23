@@ -51,18 +51,14 @@ class ADDEditMobileClient extends React.PureComponent {
     onButtonSave = () => {
 
         if ( this.newTextRefFam &&this.newTextRefIm && this.newTextRefOtch && this.newTextRefBalance) {
-            let id = (this.props.workMode === 1 ? this.props.info.id : this.props.newID);
-            let fam = this.newTextRefFam.value;
-            let Im = this.newTextRefIm.value;
-            let Otch = this.newTextRefOtch.value;
-            let Balance = +this.newTextRefBalance.value;
+
             this.setState({
                 info: {
-                    id: id,
-                    fam: fam,
-                    im: Im,
-                    otch: Otch,
-                    balance: Balance,
+                    id: (this.props.workMode === 1 ? this.props.info.id : this.props.newID),
+                    fam: this.newTextRefFam.value,
+                    im: this.newTextRefIm.value,
+                    otch: this.newTextRefOtch.value,
+                    balance: +this.newTextRefBalance.value,
                 }
             }, this.onButtonSaveClickEvent);
 
