@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {mobileEvents} from "./events";
 
+import './ADDEditMobileClient.css';
+
 class ADDEditMobileClient extends React.PureComponent {
 
     static propTypes = {
@@ -97,8 +99,8 @@ class ADDEditMobileClient extends React.PureComponent {
                         </tr>
                         </tbody>
                     </table>
-                    <input type="button" value="Сохранить" onClick = {this.onButtonSave} />
-                    <input type="button" value="Отмена" onClick = {this.onButtonCancel} />
+                    <input type="button" value="Сохранить" className="save" onClick = {this.onButtonSave} />
+                    <input type="button" value="Отмена" className="cancel" onClick = {this.onButtonCancel} />
                 </div>
             );
     }

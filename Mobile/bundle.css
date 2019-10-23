@@ -1,0 +1,12 @@
+.MobileCompanyClients input[type=button].delete {
+  background-color: red;
+}
+.MobileCompany input[type=button] {
+  background: #000;
+  border: none;
+  color: #fff;
+  padding: 0.5em 1em;
+  margin: 0.5em;
+}
+
+/*# sourceMappingURL=bundle.css.map*/

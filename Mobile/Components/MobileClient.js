@@ -63,6 +63,7 @@ class MobileClient extends React.PureComponent {
           </td>
           <td style={{textAlign: "center"}}>
             <input
+                className="edit"
                 type = 'button'
                 value = 'Редактировать'
                 onClick={this.editClicked}
@@ -70,6 +71,7 @@ class MobileClient extends React.PureComponent {
           </td>
           <td style={{textAlign: "center"}}>
             <input
+                className="delete"
                 type = 'button'
                 value = 'Удалить'
                 onClick={this.removeClicked}

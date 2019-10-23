@@ -1,0 +1,25 @@
+.MobileCompany {
+  input {
+    &[type='button'] {
+      text-transform: uppercase;
+      background: #000;
+      border: none;
+      color: #fff;
+      padding: 0.5em 1em;
+      margin: 0.5em;
+      &[value="МТС"] {
+
+      }
+    }
+  }
+  .FilterBlock {
+    border-top: 1px solid silver;
+    margin: 1em 0;
+    padding: 0.5em 0;
+    border-bottom: 1px solid silver;
+  }
+  .MobileCompanyName {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+}
