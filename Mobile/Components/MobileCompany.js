@@ -103,9 +103,15 @@ class MobileCompany extends React.PureComponent {
     buttonAddClicked = (EO) => {
         //console.log(`MobileCompany buttonAddClicked`);
 
-        let newId = this.state.clients.reduce((prev,cur) => {
-            return (prev.id > cur.id) ? prev.id : cur.id
-        });
+        let newId;
+        (this.state.clients.length === 0) ? newId = 0
+            :
+            newId = this.state.clients.reduce((prev,cur) => {
+                    return (prev.id > cur.id) ? prev.id : cur.id
+            });
+
+
+
         this.setState(prevState => ({
             editedInfo: {
                 ...prevState.editedInfo,
