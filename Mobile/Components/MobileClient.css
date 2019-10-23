@@ -6,6 +6,11 @@
 }
 .MobileCompanyClients table.MobileClients {
   width: 100%;
+  background: #e2e2e2;
+  border-spacing: 1px;
+}
+.MobileCompanyClients table tr {
+  background-color: #fff;
 }
 .MobileCompanyClients table tr:nth-of-type(1) {
   background-color: #cacaca !important;

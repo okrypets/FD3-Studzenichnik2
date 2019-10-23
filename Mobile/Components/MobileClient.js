@@ -22,17 +22,14 @@ class MobileClient extends React.PureComponent {
     };
 
     componentWillReceiveProps = (newProps) => {
-        //console.log(`MobileClient id=${this.props.info.id} componentWillReceiveProps`);
         this.setState({info:newProps.info});
     };
 
     editClicked = (EO) => {
-        //console.log(`MobileClient id=${this.props.info.id} editClicked`);
         mobileEvents.emit('EMobileClientEditClicked',this.props.info);
     };
 
     removeClicked = (EO) => {
-        //console.log(`MobileClient id=${this.props.info.id} removeClicked`);
         mobileEvents.emit('EMobileClientRemoveClicked',this.props.info);
     };
 
@@ -56,7 +53,8 @@ class MobileClient extends React.PureComponent {
           <td style={
               {
                   backgroundColor: (this.state.info.balance >= 0) ? "green" : "red",
-                  textAlign: "center"
+                  textAlign: "center",
+                  color: "#fff",
               }
           }>
             {(this.state.info.balance >= 0) ? "Active" : "Blocked"}

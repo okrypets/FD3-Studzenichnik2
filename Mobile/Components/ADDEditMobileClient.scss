@@ -1,4 +1,7 @@
 .SingleMobileClientEdit {
+  h2 {
+    text-transform: uppercase;
+  }
   input {
     &[type='button'] {
       &.save {

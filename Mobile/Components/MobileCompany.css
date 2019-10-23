@@ -1,3 +1,7 @@
+.MobileCompany {
+  font-family: arial;
+  font-size: 1em;
+}
 .MobileCompany input[type=button] {
   text-transform: uppercase;
   background: #000;

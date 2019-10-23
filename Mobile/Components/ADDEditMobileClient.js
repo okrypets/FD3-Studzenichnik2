@@ -23,7 +23,6 @@ class ADDEditMobileClient extends React.PureComponent {
     };
 
     componentWillReceiveProps = (newProps) => {
-        //console.log(`SingleMobileClient componentWillReceiveProps`);
         this.setState({info:newProps.info});
     };
 
@@ -78,7 +77,7 @@ class ADDEditMobileClient extends React.PureComponent {
                     <h2 className="SingleMobileClientTitle">
                         {this.props.workMode === 1 ? 'Edit Mobile Client' : 'Add Mobile Client'}
                     </h2>
-                    <table key = {this.props.info.id}>
+                    <table>
                         <tbody>
                         <tr>
                             <td>

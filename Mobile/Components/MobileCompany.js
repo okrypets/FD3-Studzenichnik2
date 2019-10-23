@@ -29,6 +29,8 @@ class MobileCompany extends React.PureComponent {
         newID: this.props.clients.length+1,
         name: this.props.name,
         clients: this.props.clients,
+        filteredClients: [],
+        isFiltered: false,
         workMode: 0, // 1- редактировать, 2- добавить.
 
     };
@@ -48,35 +50,35 @@ class MobileCompany extends React.PureComponent {
     };
 
     buttonClickedFilterAll = () => {
-       //let AllMobileClients =
-       this.setState({clients: this.props.clients});
+       this.setState({
+           clients: this.state.clients,
+           isFiltered: false,
+           filteredClients: [],
+       });
     };
     buttonClickedFilterActive = () => {
         let filteredClientsActive = this.state.clients.filter(i => i.balance > 0);
-        this.setState({clients: filteredClientsActive});
-        //this.filter({filteredClientsActive}, null)
+        this.setState({
+            filteredClients:filteredClientsActive,
+            isFiltered: true
+            }
+        );
     };
     buttonClickedFilterBlocked = () => {
         let filteredClientsBlocked = this.state.clients.filter(i => i.balance < 0);
-        this.setState({clients: filteredClientsBlocked});
-        //this.filter(null, {filteredClientsBlocked})
-    };
-
-    filter = (activeClients, blockedClients) => {
-        let allMobileClients = [...activeClients, ...blockedClients];
-        this.setState({clients: allMobileClients});
+        this.setState({
+            filteredClients: filteredClientsBlocked,
+            isFiltered: true
+        }
+        );
     };
 
     buttonEditClicked = (info) => {
-        //console.log(`MobileCompany id=${info.id} buttonEditClicked`);
         this.setState({workMode: 1});
         this.setState({editedInfo: info});
-        //this.editMobileClient(null, this.state.workMode);
 
     };
     editedMobileClient = (editedClient) => {
-        //console.log(`MobileCompany id=${editedClient.id} editedMobileClient`);
-        //console.log(editedClient);
         this.setState({editedInfo: editedClient, workMode: 0});
         this.editMobileClient(editedClient, this.state.workMode);
     };
@@ -86,22 +88,19 @@ class MobileCompany extends React.PureComponent {
     };
 
     buttonRemoveClicked = (removeClient) => {
-        //console.log(`MobileCompany id=${removeClient.id} buttonRemoveClicked`);
 
         if (confirm('Delete ?')) {
-            let delClients=[...this.state.clients]; // копия самого массива клиентов
+            let delClient=[...this.state.clients]; // копия самого массива клиентов
             // если в окне нажали ОК -
             //удаляем с помощью splice 1 строку в массиве в стейте по индексу. Индекс получаем сравнивая передаваемый код при клике и код в строке.
-            delClients.splice(delClients.findIndex(i => i.id === removeClient.id), 1);
+            delClient.splice(delClient.findIndex(i => i.id === removeClient.id), 1);
             //устанавливаем в стейт полученный массив после удаления
-            this.setState({clients:delClients});
+            this.setState({clients:delClient, isFiltered: false});
 
         }
-        //this.editMobileClient(removeClient, null);
     };
 
     buttonAddClicked = (EO) => {
-        //console.log(`MobileCompany buttonAddClicked`);
 
         let newId;
         (this.state.clients.length === 0) ? newId = 0
@@ -109,8 +108,6 @@ class MobileCompany extends React.PureComponent {
             newId = this.state.clients.reduce((prev,cur) => {
                     return (prev.id > cur.id) ? prev.id : cur.id
             });
-
-
 
         this.setState(prevState => ({
             editedInfo: {
@@ -134,49 +131,38 @@ class MobileCompany extends React.PureComponent {
         this.setState({name:'Velcom'});
     };
 
-    filtered = (clients) => {
-        this.setState({clients: clients});
-        //this.editMobileClient(editedClient, this.state.workMode);
-    };
-
     editMobileClient = (client, WorkMode) => {
         let changed=false;
         //console.log(client.id);
         let newClients=[...this.state.clients]; // копия самого массива клиентов
          if (newClients.some(cl => cl.id === client.id )) {
-            console.log(`Есть клиент в базе`);
-
              newClients.forEach( (c,i) => {
                  if ( c.id === client.id && c!==client) {
-                     //console.log(client);
                      newClients[i]={...client};
-                     //console.log(newClients[i]);
                      changed=true;
                  }
              } );
         } else {
-            console.log(`Нет клиента в базе. Добавляем`);
             newClients=[...this.state.clients, client];
             changed=true;
         }
 
 
-        if (WorkMode !== 0)
+        if (WorkMode)
             changed=true;
+
         if ( changed )
             this.setState({
                 clients:newClients,
                 editedInfo: null,
+                isFiltered: false,
             });
     };
     render() {
 
         console.log("MobileCompany render");
-        //console.log(this.state.clients);
 
-
-        let clientsArr=[...this.state.clients].map( client => {
-                //console.log(client);
+        let clientsArr=(!this.state.isFiltered ? [...this.state.clients] : [...this.state.filteredClients]).map( client => {
                 return <MobileClient key={client.id} info={client}  />
              }
         );

@@ -1,3 +1,6 @@
+.SingleMobileClientEdit h2 {
+  text-transform: uppercase;
+}
 .SingleMobileClientEdit input[type=button].save {
   background-color: #75c100;
 }
