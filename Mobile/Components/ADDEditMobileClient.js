@@ -44,11 +44,11 @@ class ADDEditMobileClient extends React.PureComponent {
         this.newTextRefBalance=ref;
     };
 
-    ChangeRef = () => {
+    onButtonSaveClickEvent = () => {
         mobileEvents.emit('EMobileClientOnButtonSaveClick',this.state.info);
     };
 
-    buttonSave = () => {
+    onButtonSave = () => {
 
         if ( this.newTextRefFam &&this.newTextRefIm && this.newTextRefOtch && this.newTextRefBalance) {
             let id = (this.props.workMode === 1 ? this.props.info.id : this.props.newID);
@@ -64,11 +64,11 @@ class ADDEditMobileClient extends React.PureComponent {
                     otch: Otch,
                     balance: Balance,
                 }
-            }, this.ChangeRef);
+            }, this.onButtonSaveClickEvent);
 
         }
     };
-    buttonCancel = () => {
+    onButtonCancel = () => {
         mobileEvents.emit('EMobileClientOnButtonCancelClick',this.state.info);
     };
 
@@ -84,27 +84,27 @@ class ADDEditMobileClient extends React.PureComponent {
                     </h2>
                     <table key = {this.props.info.id}>
                         <tbody>
-                            <tr>
-                                <td>
-                                    <span>ID:</span> {this.props.workMode === 1 ? this.props.info.id : this.props.newID}
-                                </td>
-                                <td>
-                                    <span>Фамилия:</span> <input type="text" defaultValue={this.props.info.fam} ref={this.setNewTextRefFam} />
-                                </td>
-                                <td>
-                                    <span>Имя:</span> <input type="text" defaultValue={this.props.info.im} ref={this.setNewTextRefIm} />
-                                </td>
-                                <td>
-                                    <span>Отчество:</span> <input type="text" defaultValue={this.props.info.otch} ref={this.setNewTextRefOtch} />
-                                </td>
-                                <td>
-                                    <span>Баланс:</span> <input type="text" defaultValue={this.props.info.balance} ref={this.setNewTextRefBalance} />
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>
+                                <span>ID:</span> {this.props.workMode === 1 ? this.props.info.id : this.props.newID}
+                            </td>
+                            <td>
+                                <span>Фамилия:</span> <input type="text" defaultValue={this.props.info.fam} ref={this.setNewTextRefFam} />
+                            </td>
+                            <td>
+                                <span>Имя:</span> <input type="text" defaultValue={this.props.info.im} ref={this.setNewTextRefIm} />
+                            </td>
+                            <td>
+                                <span>Отчество:</span> <input type="text" defaultValue={this.props.info.otch} ref={this.setNewTextRefOtch} />
+                            </td>
+                            <td>
+                                <span>Баланс:</span> <input type="text" defaultValue={this.props.info.balance} ref={this.setNewTextRefBalance} />
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
-                    <input type="button" value="Сохранить" onClick = {this.buttonSave} />
-                    <input type="button" value="Отмена" onClick = {this.buttonCancel} />
+                    <input type="button" value="Сохранить" onClick = {this.onButtonSave} />
+                    <input type="button" value="Отмена" onClick = {this.onButtonCancel} />
                 </div>
             );
         } else {
