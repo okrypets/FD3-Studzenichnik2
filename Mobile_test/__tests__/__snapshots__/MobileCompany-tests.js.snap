@@ -1,0 +1,135 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MobileCompany-test is ADD button is 1`] = `
+<div
+  className="MobileCompany"
+>
+  <div
+    className="FilterBlock"
+  >
+    <input
+      onClick={[Function]}
+      type="button"
+      value="Все"
+    />
+    <input
+      onClick={[Function]}
+      type="button"
+      value="Активные"
+    />
+    <input
+      onClick={[Function]}
+      type="button"
+      value="Заблокированные"
+    />
+  </div>
+  <div
+    className="MobileCompanyClients"
+  >
+    <table
+      className="MobileClients"
+    >
+      <tbody
+        className="MobileClientsTable"
+      >
+        <tr>
+          <th>
+            Фамилия
+          </th>
+          <th>
+            Имя
+          </th>
+          <th>
+            Отчество
+          </th>
+          <th>
+            Баланс
+          </th>
+          <th>
+            Статус
+          </th>
+          <th>
+            Редактировать
+          </th>
+          <th>
+            Удалить
+          </th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <input
+    className="add"
+    onClick={[Function]}
+    type="button"
+    value="Добавить"
+  />
+</div>
+`;
+
+exports[`MobileCompany-test is ADD button is 2`] = `
+<div
+  className="MobileCompany"
+>
+  <div
+    className="FilterBlock"
+  >
+    <input
+      onClick={[Function]}
+      type="button"
+      value="Все"
+    />
+    <input
+      onClick={[Function]}
+      type="button"
+      value="Активные"
+    />
+    <input
+      onClick={[Function]}
+      type="button"
+      value="Заблокированные"
+    />
+  </div>
+  <div
+    className="MobileCompanyClients"
+  >
+    <table
+      className="MobileClients"
+    >
+      <tbody
+        className="MobileClientsTable"
+      >
+        <tr>
+          <th>
+            Фамилия
+          </th>
+          <th>
+            Имя
+          </th>
+          <th>
+            Отчество
+          </th>
+          <th>
+            Баланс
+          </th>
+          <th>
+            Статус
+          </th>
+          <th>
+            Редактировать
+          </th>
+          <th>
+            Удалить
+          </th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <input
+    className="add"
+    onClick={[Function]}
+    type="button"
+    value="Добавить"
+  />
+</div>
+`;

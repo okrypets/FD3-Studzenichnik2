@@ -1,0 +1,11 @@
+.SingleMobileClientEdit h2 {
+  text-transform: uppercase;
+}
+.SingleMobileClientEdit input[type=button].save {
+  background-color: #75c100;
+}
+.SingleMobileClientEdit input[type=button].cancel {
+  background-color: red;
+}
+
+/*# sourceMappingURL=ADDEditMobileClient.css.map */
