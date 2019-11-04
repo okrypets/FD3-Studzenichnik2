@@ -2,7 +2,7 @@
 
 class Scales {
 
-    static productsArr:Array<{name:string, scale:number}> = [];
+    static productsArr:(Product)[] = [];
     static sumScale:number=0;
     static nameList:Array<string>=[];
 
@@ -12,7 +12,7 @@ class Scales {
         this.product = null;
     }
 
-    add(_product:{name:string, scale:number}):void {
+    add(_product:Product):void {
         Scales.productsArr = [...Scales.productsArr, _product];
         console.log(Scales.productsArr);
     }
