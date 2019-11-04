@@ -2,31 +2,33 @@
 
 class Scales {
 
-    static productsArr:Product[] = [];
-    static sumScale:number=0;
-    static nameList:Array<string>=[];
-
-    product:{name:string, scale:number};
+    productsArr:Product[] = [];
+    sumScale:number=0;
+    nameList:Array<string>=[];
 
     constructor() {
-        this.product = null;
     }
 
     add(_product:Product):void {
-        Scales.productsArr = [...Scales.productsArr, _product];
-        console.log(Scales.productsArr);
+        this.productsArr.push( _product);
+        console.log(this.productsArr);
     }
     getSumScale():void {
-        Scales.productsArr.forEach((product) => {
-            Scales.sumScale += product.scale;
+        this.sumScale = 0;
+        this.productsArr.forEach((product) => {
+            this.sumScale += product.getScale(product.scale);
         });
-        console.log(Scales.sumScale);
+        //this.sumScale = this.productsArr.reduce((sum, current) => sum + current.getScale(current.scale), 0);
+        //this.sumScale = this.productsArr.reduce((sum, current) => sum + current.scale, 0);
+        console.log(this.sumScale);
     }
     getNameList():void {
-        Scales.productsArr.forEach((product) => {
-            Scales.nameList = [...Scales.nameList, product.name];
+        this.nameList = [];
+        this.productsArr.forEach((product) => {
+            let _name = product.getName(product.name);
+            this.nameList.push(_name);
         });
-        console.log(Scales.nameList);
+        console.log(this.nameList);
     }
 
 }
@@ -42,12 +44,14 @@ class Product {
         this.scale = _scale;
     }
 
-    getScale():void {
-        console.log(this.scale);
+    getScale(_scale:number ):number {
+        //console.log(this.scale);
+        return this.scale = _scale;
     }
 
-    getName():void {
-        console.log(this.name);
+    getName(_name:string):string {
+        //console.log(this.name);
+        return this.name = _name;
     }
 
 }
@@ -58,12 +62,14 @@ class Apple extends Product {
         super(_name, _scale);
     }
 
-    getScale():void {
-        super.getScale();
+    getScale(_scale:number ):number {
+        super.getScale(_scale);
+        return this.scale = _scale;
     }
 
-    getName():void {
-        super.getName();
+    getName(_name:string):string {
+        super.getName(_name);
+        return this.name = _name;
     }
 }
 
@@ -72,12 +78,14 @@ class Tomato extends Product {
         super(_name, _scale);
     }
 
-    getScale():void {
-        super.getScale();
+    getScale(_scale:number ):number {
+        super.getScale(_scale);
+        return this.scale = _scale;
     }
 
-    getName():void {
-        super.getName();
+    getName(_name:string):string {
+        super.getName(_name);
+        return this.name = _name;
     }
 }
 
@@ -95,6 +103,8 @@ scales.add(Apple1);
 scales.add(Apple2);
 scales.add(Tomato1);
 scales.add(Tomato2);
-console.log(Scales.productsArr);
+console.log(scales.productsArr);
 scales.getSumScale();
+scales.getSumScale();
+scales.getNameList();
 scales.getNameList();
