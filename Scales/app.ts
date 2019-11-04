@@ -2,7 +2,7 @@
 
 class Scales {
 
-    static productsArr:(Product)[] = [];
+    static productsArr:Product[] = [];
     static sumScale:number=0;
     static nameList:Array<string>=[];
 
@@ -18,7 +18,7 @@ class Scales {
     }
     getSumScale():void {
         Scales.productsArr.forEach((product) => {
-            Scales.sumScale += +product.scale;
+            Scales.sumScale += product.scale;
         });
         console.log(Scales.sumScale);
     }
