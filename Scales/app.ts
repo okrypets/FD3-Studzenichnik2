@@ -3,32 +3,25 @@
 class Scales {
 
     productsArr:Product[] = [];
-    sumScale:number=0;
-    nameList:Array<string>=[];
 
-    constructor() {
-    }
 
     add(_product:Product):void {
-        this.productsArr.push( _product);
         console.log(this.productsArr);
+        this.productsArr.push( _product);
     }
-    getSumScale():void {
-        this.sumScale = 0;
+    getSumScale():any {
+        let sumScale:number=0;
         this.productsArr.forEach((product) => {
-            this.sumScale += product.getScale(product.scale);
+            return sumScale += product.getScale(product.scale);
         });
-        //this.sumScale = this.productsArr.reduce((sum, current) => sum + current.getScale(current.scale), 0);
-        //this.sumScale = this.productsArr.reduce((sum, current) => sum + current.scale, 0);
-        console.log(this.sumScale);
+        console.log(sumScale);
     }
-    getNameList():void {
-        this.nameList = [];
+    getNameList():any {
+        let nameList:Array<string>=[];
         this.productsArr.forEach((product) => {
-            let _name = product.getName(product.name);
-            this.nameList.push(_name);
+            return nameList.push(product.getName(product.name));
         });
-        console.log(this.nameList);
+        console.log(nameList);
     }
 
 }
