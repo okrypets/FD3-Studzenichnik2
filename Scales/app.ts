@@ -6,22 +6,24 @@ class Scales {
 
 
     add(_product:Product):void {
-        console.log(this.productsArr);
         this.productsArr.push( _product);
+        console.log(this.productsArr);
     }
-    getSumScale():any {
+    getSumScale():number {
         let sumScale:number=0;
         this.productsArr.forEach((product) => {
-            return sumScale += product.getScale(product.scale);
+            sumScale += product.getScale();
         });
         console.log(sumScale);
+        return sumScale
     }
-    getNameList():any {
+    getNameList():Array<string> {
         let nameList:Array<string>=[];
         this.productsArr.forEach((product) => {
-            return nameList.push(product.getName(product.name));
+            nameList.push(product.getName());
         });
         console.log(nameList);
+        return nameList
     }
 
 }
@@ -37,14 +39,12 @@ class Product {
         this.scale = _scale;
     }
 
-    getScale(_scale:number ):number {
-        //console.log(this.scale);
-        return this.scale = _scale;
+    getScale():number {
+        return this.scale;
     }
 
-    getName(_name:string):string {
-        //console.log(this.name);
-        return this.name = _name;
+    getName():string {
+        return this.name;
     }
 
 }
@@ -55,14 +55,14 @@ class Apple extends Product {
         super(_name, _scale);
     }
 
-    getScale(_scale:number ):number {
-        super.getScale(_scale);
-        return this.scale = _scale;
+    getScale():number {
+        super.getScale();
+        return this.scale;
     }
 
-    getName(_name:string):string {
-        super.getName(_name);
-        return this.name = _name;
+    getName():string {
+        super.getName();
+        return this.name;
     }
 }
 
@@ -71,25 +71,21 @@ class Tomato extends Product {
         super(_name, _scale);
     }
 
-    getScale(_scale:number ):number {
-        super.getScale(_scale);
-        return this.scale = _scale;
+    getScale():number {
+        super.getScale();
+        return this.scale;
     }
 
-    getName(_name:string):string {
-        super.getName(_name);
-        return this.name = _name;
+    getName():string {
+        super.getName();
+        return this.name;
     }
 }
 
 const Apple1:Product = new Apple("Apple_Big", 23);
-console.log(Apple1);
 const Apple2:Product = new Apple("Apple_small", 3);
-console.log(Apple2);
 const Tomato1:Product = new Tomato("Tomato_Big", 12);
-console.log(Tomato1);
 const Tomato2:Product = new Tomato("Tomato_small", 100);
-console.log(Tomato2);
 
 let scales = new Scales();
 scales.add(Apple1);
