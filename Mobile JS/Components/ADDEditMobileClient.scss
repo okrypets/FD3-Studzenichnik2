@@ -1,0 +1,15 @@
+.SingleMobileClientEdit {
+  h2 {
+    text-transform: uppercase;
+  }
+  input {
+    &[type='button'] {
+      &.save {
+        background-color: #75c100;
+      }
+      &.cancel {
+        background-color: red;
+      }
+    }
+  }
+}

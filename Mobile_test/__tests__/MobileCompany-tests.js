@@ -6,7 +6,7 @@ import renderer from 'react-test-renderer';
 import MobileCompany from '../components/MobileCompany';
 
 describe('MobileCompany-test', () => {
-    it('is ADD button is', () => {
+    xit('is ADD button is', () => {
 
         // создаём тестовую версию компонента
         const component = renderer.create(
@@ -17,21 +17,33 @@ describe('MobileCompany-test', () => {
         let componentTree=component.toJSON();
         expect(componentTree).toMatchSnapshot();
 
-        /*-----------Проверяем наличие кнопки------------*/
+        /*-----------Проверяем наличие и работу кнопки Add ------------*/
 
         // найдём в вёрстке компонента кнопку type = button with className = add
         //const buttonAdd = component.root.find( el => (el.type ==='input' && el.class ==='add') /*&& el.props.aaa == 'bbb'*/ );
         const buttonAdd = component.root
-            .findAll(
-                (el) => el.type === 'input'
+            .find(
+                (el) =>
+                    el.type === 'input'
                     && el.props.type === 'button'
                     && el.props.className === 'add'
             );
-        expect(buttonAdd).toBeDefined();
-        //
-
         // и "нажмём" на неё
         buttonAdd.props.onClick();
+        const buttonEditClicked = jest.fn();
+        simulatePresses(buttonEditClicked);
+        expect(buttonEditClicked).toBeCalledWith(
+            expect.objectContaining({
+                id: expect.any(Number),
+                fam: expect.any(String),
+                im: expect.any(String),
+                otch: expect.any(String),
+                balance: expect.any(Number),
+                }),
+            );
+
+        //expect(component.root.find(el => el.props.className === 'SingleMobileClientEdit')).toBeInstanceOf('SingleMobileClientEdit');
+
 
         /*---------Вызываем функцию buttonAddClicked
         const onPressAddButton = jest.fn();

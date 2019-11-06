@@ -9,11 +9,11 @@ let companyName="Velcom";
 let clientsArr = require('./MobileClients.json');
 
 ReactDOM.render(
-    <MobileCompany
-        name={companyName}
-        clients={clientsArr}
-        workmode ={0}
-    />
-    , document.getElementById('container')
+  <MobileCompany 
+    name={companyName}
+    clients={clientsArr}
+    workmode ={0}
+  />
+  , document.getElementById('container') 
 );
 

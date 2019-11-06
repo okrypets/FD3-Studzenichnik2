@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import MobileClient from './MobileClient';
 import ADDEditMobileClient from './ADDEditMobileClient';
 import {mobileEvents} from './events';
-import Modules from '../Modules/Modules';
+import {Modules} from '../moduls/Modules';
 
 import './MobileCompany.css';
 
