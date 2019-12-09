@@ -1,0 +1,10 @@
+<div class="Sprite"
+     [ngStyle]="{
+     'background-image': 'url(' + url + ')'
+     }"
+     [style.width.px]="getWidth()"
+     [style.height.px]="getHeight()"
+     [style.background-position-x.px]="getOffsetX()"
+     [style.background-position-y.px]="getOffsetY()"
+     (click)="setSprite()"
+></div>
