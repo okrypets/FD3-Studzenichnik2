@@ -1,0 +1,15 @@
+<div class='Cinema'>
+
+  <div class="CinemaBlock">
+    <span>Занято: {{getEngagedTickets()}}</span>
+    <br>
+    <span>Свободно: {{getEmptyTickets()}}</span>
+  </div>
+
+  <cash class="OnlineCash" [cashBox-Name] = "'online'"></cash>
+  <cash class="OfflineCash" [cashBox-Name] = "'offline'"></cash>
+
+
+  <span class="error" *ngIf="getEmptyTickets() === 0">{{getError()}}</span>
+
+</div>

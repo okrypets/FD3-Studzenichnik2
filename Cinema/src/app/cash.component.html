@@ -1,0 +1,23 @@
+<h3 [ngSwitch]="getName()">
+    <span *ngSwitchCase="'online'">Online Касса</span>
+    <span *ngSwitchCase="'offline'">Offline Касса</span>
+    <span *ngSwitchDefault >Билетная касса</span>
+</h3>
+<div class="OnlineСashbox" *ngIf="getName()=== 'online'" >
+  <input type=number min="1" [(ngModel)]="seatsNumber" >
+  <input type=button value='Buy' (click)="setOnlineCashBoxNumber(seatsNumber)" [attr.disabled]="getEmptyTickets()===0 ? '' : null" >
+  <div>
+    Ваши билеты:
+    <span class="ticketList" *ngFor="let item of getOnlineCashBoxNumberArray()">{{item}}</span>
+  </div>
+</div>
+
+<div class="OnlineСashbox" *ngIf="getName()=== 'offline'" >
+  <input type=number min="1" [(ngModel)]="seatsNumber" >
+  <input type=button value='Buy' (click)="setOfflineCashBoxNumber(seatsNumber)" [attr.disabled]="getEmptyTickets()===0 ? '' : null" >
+  <div>
+    Ваши билеты:
+    <span class="ticketList" *ngFor="let item of getOfflineCashBoxNumberArray()">{{item}}</span>
+  </div>
+</div>
+
