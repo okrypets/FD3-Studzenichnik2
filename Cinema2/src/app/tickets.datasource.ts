@@ -1,29 +1,19 @@
 ﻿import { Injectable } from "@angular/core";
+import {Observable} from "rxjs/Observable";
+import {of} from "rxjs/observable/of";
 
 @Injectable()
 export class TicketsDatasource {
 
 
-  private tickets:Array<{seatNumber:number,isEmpty:boolean}>=[
-    { seatNumber:1, isEmpty:true },
-    { seatNumber:2, isEmpty:true },
-    { seatNumber:3, isEmpty:true },
-    { seatNumber:4, isEmpty:true },
-    { seatNumber:5, isEmpty:true },
-    { seatNumber:6, isEmpty:true },
-    { seatNumber:7, isEmpty:true },
-    { seatNumber:8, isEmpty:true },
-    { seatNumber:9, isEmpty:true },
-    { seatNumber:10, isEmpty:true },
-    { seatNumber:11, isEmpty:true },
-    { seatNumber:12, isEmpty:true },
-  ];
-
+  private tickets:Array<boolean>=[true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true];
+  private placesObs:Observable<Array<boolean>>;
   private name:string;
   private seatsNumber:number;
   private onlineCashArray:Array<number>=[];
   private offlineCashArray:Array<number>=[];
-  private error:string="Билеты закончились"
+  private error:string="Билеты закончились";
+
 
   setName(_name):void {
     this.name = _name;
@@ -32,61 +22,46 @@ export class TicketsDatasource {
   getName():string {
     return this.name;
   }
-
-  getEmptyTickets():number {
-    console.log(this.tickets)
-    return this.tickets
-      .filter(it => it.isEmpty)
-      .length
-      ;
+/*
+  getTickets():Array<boolean> {
+    return this.tickets;
   }
 
-  getEngagedTickets():number {
-    console.log(this.tickets)
-    return this.tickets
-      .filter(it => !it.isEmpty)
-      .length
-      ;
+ */
+
+  getTicketsObs():Observable<Array<boolean>> {
+    return of(this.tickets);
   }
 
   setOnlineCashBoxNumber(_seatsNumber:number):void {
     this.seatsNumber = _seatsNumber
-    this.setOlineCashArray(this.seatsNumber)
-    this.setNewTickets(this.seatsNumber)
+    this.setOnlineCashArray(this.seatsNumber)
   }
 
   setOfflineCashBoxNumber(_seatsNumber:number):void {
     this.seatsNumber = _seatsNumber
     this.setOfflineCashArray(this.seatsNumber)
-    this.setNewTickets(this.seatsNumber)
   }
 
-  filterEmpty(num:number):Array<{seatNumber:number,isEmpty:boolean}> {
-    const filter:Array<{seatNumber:number,isEmpty:boolean}> = this.tickets
-      .filter(it => it.isEmpty === true)
-      .slice(0, num)
-    return filter
+  getFirstEmpty() {
+    return this.tickets.indexOf(this.tickets.some(it => it === true)) // index первого свободного места в зале
   }
 
-  setNewTickets(_busyNumber:number):void {
-    let busy:Array<{seatNumber:number,isEmpty:boolean}> = this.filterEmpty(_busyNumber)
-    busy.forEach(i => {i.seatNumber, i.isEmpty = false})
-    const newTickets = this.tickets.slice()
-    this.tickets = Array.from(new Set(newTickets.concat(busy)))
-  }
-  setOlineCashArray(_onlineSeats:number):void {
-    let online:Array<{seatNumber:number,isEmpty:boolean}> = this.filterEmpty(_onlineSeats)
-    for(let i = 0; i< online.length; i++) {
-      const {seatNumber} = online[i]
-      this.onlineCashArray = [...this.onlineCashArray, seatNumber]
+  setOnlineCashArray(_onlineSeats:number):void {
+    let firstEmpty = this.getFirstEmpty()
+    let newTickets = this.tickets.fill(false, firstEmpty, firstEmpty+_onlineSeats)
+    this.tickets = newTickets
+    for (let i = firstEmpty; i < firstEmpty+_onlineSeats; i++) {
+      this.onlineCashArray = [...this.onlineCashArray, i+1]
     }
   }
 
   setOfflineCashArray(_offlineSeats:number):void {
-    let offline:Array<{seatNumber:number,isEmpty:boolean}> = this.filterEmpty(_offlineSeats)
-    for(let i = 0; i< offline.length; i++) {
-      const {seatNumber} = offline[i]
-      this.offlineCashArray = [...this.offlineCashArray, seatNumber]
+    let firstEmpty = this.getFirstEmpty()
+    let newTickets = this.tickets.fill(false, firstEmpty, firstEmpty+_offlineSeats)
+    this.tickets = newTickets
+    for (let i = firstEmpty; i < firstEmpty+_offlineSeats; i++) {
+        this.offlineCashArray = [...this.offlineCashArray, i+1]
     }
   }
 

@@ -4,6 +4,11 @@
     <span>Занято: {{getEngagedTickets()}}</span>
     <br>
     <span>Свободно: {{getEmptyTickets()}}</span>
+    <ul>
+    <li class="ticketList" *ngFor="let item of getTickets()" >
+      <span [class]="item ? 'green' : 'red'" ></span>
+    </li>
+    </ul>
   </div>
 
   <cash class="OnlineCash" [cashBox-Name] = "'online'"></cash>

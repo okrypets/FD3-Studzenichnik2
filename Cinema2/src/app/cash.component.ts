@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { TicketsDatasource } from './tickets.datasource';
+import {Observable} from "rxjs/Observable";
+import {from} from "rxjs/observable/from";
 
 @Component({
   moduleId: module.id,
@@ -14,10 +16,11 @@ export class CashComponent {
 
   @Input("cashBox-Name")
   private name:string;
-
+  private tickets:Array<boolean>
   public seatsNumber:number;
 
   constructor(private datasource:TicketsDatasource) {
+    from(this.getTicketsObs()).subscribe( str => this.tickets=str );
   }
 
   setOnlineCashBoxNumber(_seatsNumber:number):void {
@@ -45,7 +48,17 @@ export class CashComponent {
   }
 
   getEmptyTickets():number {
-    return this.datasource.getEmptyTickets();
+    return this.getTickets()
+      .filter (it => it === true)
+      .length
+      ;
+  }
+  getTickets():Array<boolean> {
+    return this.tickets;
+  }
+
+  getTicketsObs():Observable<Array<boolean>> {
+    return this.datasource.getTicketsObs();
   }
 
 }
